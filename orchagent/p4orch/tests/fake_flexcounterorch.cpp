@@ -1,5 +1,5 @@
-#include "copporch.h"
-#include "flexcounterorch.h"
+#include "orchagent/copporch.h"
+#include "orchagent/flexcounterorch.h"
 
 FlexCounterOrch::FlexCounterOrch(swss::DBConnector *db, std::vector<std::string> &tableNames)
     : Orch(db, tableNames), m_flexCounterConfigTable(db, CFG_FLEX_COUNTER_TABLE_NAME),

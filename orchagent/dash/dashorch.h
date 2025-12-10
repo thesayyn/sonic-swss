@@ -8,14 +8,14 @@
 
 #include <saitypes.h>
 
-#include "bulker.h"
+#include "orchagent/bulker.h"
 #include "dbconnector.h"
 #include "ipaddress.h"
 #include "ipaddresses.h"
 #include "ipprefix.h"
 #include "macaddress.h"
-#include "timer.h"
-#include "zmqorch.h"
+#include "orchagent/timer.h"
+#include "orchagent/zmqorch.h"
 #include "zmqserver.h"
 
 #include "dash_api/appliance.pb.h"

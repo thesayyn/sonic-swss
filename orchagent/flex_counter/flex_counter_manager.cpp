@@ -1,4 +1,4 @@
-#include "flex_counter_manager.h"
+#include "orchagent/flex_counter/flex_counter_manager.h"
 
 #include <vector>
 
@@ -7,7 +7,7 @@
 #include "logger.h"
 #include "sai_serialize.h"
 
-#include <macsecorch.h>
+#include "orchagent/macsecorch.h"
 
 using std::shared_ptr;
 using std::string;

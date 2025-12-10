@@ -2,7 +2,7 @@
 #include <unordered_map>
 #include <chrono>
 #include <limits.h>
-#include "orchdaemon.h"
+#include "orchagent/orchdaemon.h"
 #include "logger.h"
 #include <sairedis.h>
 #include "warm_restart.h"
@@ -10,7 +10,7 @@
 
 #define SAI_SWITCH_ATTR_CUSTOM_RANGE_BASE SAI_SWITCH_ATTR_CUSTOM_RANGE_START
 #include "sairedis.h"
-#include "chassisorch.h"
+#include "orchagent/chassisorch.h"
 
 using namespace std;
 using namespace swss;

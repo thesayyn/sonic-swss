@@ -6,7 +6,7 @@ extern "C"
 #include <map>
 #include <string>
 
-#include "portsorch.h"
+#include "orchagent/portsorch.h"
 
 #define PORT_STAT_FLEX_COUNTER_POLLING_INTERVAL_MS 1000
 #define PORT_BUFFER_DROP_STAT_POLLING_INTERVAL_MS 60000
