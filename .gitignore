@@ -29,7 +29,20 @@ configure
 libtool
 Makefile.in
 stamp-h1
-**/Makefile
+cfgmgr/Makefile
+fdbsyncd/Makefile
+fpmsyncd/Makefile
+gearsyncd/Makefile
+mclagsyncd/Makefile
+neighsyncd/Makefile
+orchagent/Makefile
+orchagent/p4orch/tests/Makefile
+portsyncd/Makefile
+swssconfig/Makefile
+teamsyncd/Makefile
+tests/Makefile
+tests/mock_tests/Makefile
+tlm_teamd/Makefile
 autom4te.cache
 
 # Temp files #
@@ -94,3 +107,6 @@ tests/mock_tests/**/*log
 tests/mock_tests/**/*trs
 orchagent/p4orch/tests/**/*gcda
 orchagent/p4orch/tests/**/*gcno
+
+# bazel
+bazel-*
