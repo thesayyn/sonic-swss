@@ -229,7 +229,7 @@ pkg_deb(
         "libteamdctl0",  #(>= 1.9)
     ],
     description = "Sonic SWSS",
-    maintainer = "GPINS SWSS Team (Google)",
+    maintainer = "SONiC SWSS Team",
     package = "sonic-swss-dbg",
 
     # Currently uses static naming
