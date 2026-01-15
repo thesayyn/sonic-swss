@@ -2,17 +2,19 @@ workspace(name = "sonic_swss")
 
 load("@bazel_tools//tools/build_defs/repo:git.bzl", "git_repository")
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
-load("swss_deps.bzl", "swss_deps")
 
-swss_deps()
+# In MODULE.bazel
+#load("//:swss_deps.bzl", "swss_deps")
 
-load("@rules_pkg//:deps.bzl", "rules_pkg_dependencies")
+#swss_deps()
 
-rules_pkg_dependencies()
+#load("@rules_pkg//:deps.bzl", "rules_pkg_dependencies")
 
-load("@rules_foreign_cc//foreign_cc:repositories.bzl", "rules_foreign_cc_dependencies")
+#rules_pkg_dependencies()
 
-rules_foreign_cc_dependencies()
+#load("@rules_foreign_cc//foreign_cc:repositories.bzl", "rules_foreign_cc_dependencies")
+
+#rules_foreign_cc_dependencies()
 
 load("//:bazel/swsscommon/swsscommon.bzl", "swsscommon_configure")
 
@@ -53,21 +55,21 @@ saivs_configure(name = "local_saivs")
 load("//:bazel/jansson/jansson.bzl", "jansson_configure")
 
 jansson_configure(name = "local_jansson")
-
-load("@com_github_grpc_grpc//bazel:grpc_deps.bzl", "grpc_deps")
-
-grpc_deps()
-
-load("@com_github_grpc_grpc//bazel:grpc_extra_deps.bzl", "grpc_extra_deps")
-
-grpc_extra_deps()
-
-load("@com_google_protobuf//:protobuf_deps.bzl", "protobuf_deps")
-
-protobuf_deps()
-
-load("@rules_proto//proto:repositories.bzl", "rules_proto_dependencies", "rules_proto_toolchains")
-
-rules_proto_dependencies()
-
-rules_proto_toolchains()
+#
+#load("@com_github_grpc_grpc//bazel:grpc_deps.bzl", "grpc_deps")
+#
+#grpc_deps()
+#
+#load("@com_github_grpc_grpc//bazel:grpc_extra_deps.bzl", "grpc_extra_deps")
+#
+#grpc_extra_deps()
+#
+#load("@com_google_protobuf//:protobuf_deps.bzl", "protobuf_deps")
+#
+#protobuf_deps()
+#
+#load("@rules_proto//proto:repositories.bzl", "rules_proto_dependencies", "rules_proto_toolchains")
+#
+#rules_proto_dependencies()
+#
+#rules_proto_toolchains()

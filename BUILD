@@ -236,3 +236,11 @@ pkg_deb(
     package_file_name = "swss-dbg_1.0.0_amd64.deb",
     version = "1.0.0",
 )
+
+platform(
+    name = "linux_x86_64",
+    constraint_values = [
+        "@platforms//os:linux",
+        "@platforms//cpu:x86_64",
+    ],
+)

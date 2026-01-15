@@ -67,3 +67,6 @@ build:portsyncd_tests_opts --define=portsyncd_tests_opts=true
 build:portsyncd_tests_opts --linkopt='-Wl,-wrap,if_nameindex'
 build:portsyncd_tests_opts --linkopt='-Wl,-wrap,if_freenameindex'
 build --experimental_cc_shared_library
+
+common:blmigration --registry=https://raw.githubusercontent.com/aspect-build/bazel-central-registry/aspect_rules_py-v1.7.1
+common:blmigration --registry=https://bcr.bazel.build
