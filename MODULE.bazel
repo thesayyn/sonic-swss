@@ -77,6 +77,29 @@ gcc_toolchains = use_extension("@gcc_toolchain//toolchain:module_extensions.bzl"
     ]
 ]
 
+bazel_dep(name = "sonic-swss-common", version = "0.0.0", repo_name = "sonic_swss_common")
+
+# git_override(
+#     module_name = "sonic-swss-common",
+#     commit = "fb068d7dd7f6f4f63c48d85ba9135b3b78d8d804",  # Tip of master
+#     remote = "https://github.com/thesayyn/sonic-swss-common",
+# )
+local_path_override(
+    module_name = "sonic-swss-common",
+    path = "../../sonic-net/sonic-swss-common",
+)
+
+bazel_dep(name = "sonic-build-infra", version = "0.0.0")
+# git_override(
+#     module_name = "sonic-build-infra",
+#     commit = "01d897a9e7b7aea219a389ccd5112233f26576b8",  # Tip of master
+#     remote = "https://github.com/thesayyn/sonic-build-infra",
+# )
+local_path_override(
+    module_name = "sonic-build-infra",
+    path = "../../sonic-net/sonic-build-infra",
+)
+
 # TODO BL: not sure we need Python for now.
 #uv = use_extension("@aspect_rules_py//uv/unstable:extension.bzl", "uv")
 #uv.declare_hub(hub_name = "pip")

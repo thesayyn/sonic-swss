@@ -15,12 +15,16 @@ cc_library(
     hdrs = ["shellcmd.h"],
     deps = [
         "@local_swsscommon//:swsscommon",
-    ]
+    ],
 )
 
 filegroup(
     name = "confg_mgr_data",
-    srcs = glob(["*.json"]),
+    # TODO BL: This probably wasn't meant to allow empty
+    srcs = glob(
+        ["*.json"],
+        allow_empty = True,
+    ),
 )
 
 filegroup(
@@ -46,10 +50,10 @@ cc_binary(
 cc_binary(
     name = "teammgrd",
     srcs = [
+        "portmgr.h",
         "teammgr.cpp",
         "teammgr.h",
         "teammgrd.cpp",
-        "portmgr.h",
     ],
     copts = DEFAULT_COPTS,
     linkopts = DEFAULT_LINKOPTS,
@@ -155,10 +159,10 @@ cc_binary(
 cc_binary(
     name = "sflowmgrd",
     srcs = [
+        "portmgr.h",
         "sflowmgr.cpp",
         "sflowmgr.h",
         "sflowmgrd.cpp",
-        "portmgr.h",
     ],
     copts = DEFAULT_COPTS,
     linkopts = DEFAULT_LINKOPTS,
@@ -242,7 +246,6 @@ cc_binary(
         "//orchagent:orchagent_lib_impl",
     ],
 )
-
 
 # -------------- Base lib to use in external targets -------------
 
