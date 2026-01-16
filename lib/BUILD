@@ -28,7 +28,8 @@ cc_library(
         "recorder.h",
     ],
     copts = [
-        "-I/usr/include/sai",
+      # TODO BL: This is probably not right.
+        # "-I/usr/include/sai",
     ] + add_debug_to_copts(),
     linkopts = add_gcovpreload_to_linkopts(),
     deps = [
