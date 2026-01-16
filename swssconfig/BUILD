@@ -15,7 +15,7 @@ cc_binary(
     copts = add_debug_to_copts(),
     deps = [
         "@local_hiredis//:hiredis",
-        "@local_swsscommon//:swsscommon",
+        "//bazel/swsscommon:swsscommon",
     ],
 )
 
@@ -25,6 +25,6 @@ cc_binary(
     copts = add_debug_to_copts(),
     deps = [
         "@local_hiredis//:hiredis",
-        "@local_swsscommon//:swsscommon",
+        "//bazel/swsscommon:swsscommon",
     ],
 )

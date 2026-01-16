@@ -1,0 +1,11 @@
+package(default_visibility = ["//visibility:public"])
+
+alias(
+    name = "swsscommon_headers",
+    target = "@sonic_swss_common//:common",
+)
+
+alias(
+  name = "swsscommon",
+  target = "@sonic_swss_common//:libswsscommon",
+)

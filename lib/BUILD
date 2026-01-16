@@ -32,7 +32,7 @@ cc_library(
     ] + add_debug_to_copts(),
     linkopts = add_gcovpreload_to_linkopts(),
     deps = [
-        "@local_swsscommon//:swsscommon",
+        "//bazel/swsscommon:swsscommon",
     ],
 )
 
@@ -42,6 +42,6 @@ cc_library(
     copts = add_debug_to_copts(),
     linkopts = add_gcovpreload_to_linkopts(),
     deps = [
-        "@local_swsscommon//:swsscommon",
+        "//bazel/swsscommon:swsscommon",
     ],
 )

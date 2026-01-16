@@ -17,6 +17,6 @@ cc_binary(
         "@local_hiredis//:hiredis",
         "@local_jansson//:jansson",
         "@local_libteam//:libteamdctl",
-        "@local_swsscommon//:swsscommon",
+        "//bazel/swsscommon:swsscommon",
     ],
 )

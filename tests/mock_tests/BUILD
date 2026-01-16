@@ -56,7 +56,7 @@ cc_library(
         "@local_libnl3//:libnl-route-3",
         "@local_libnl3//:libnl3",
         "@local_saivs//:saivs",
-        "@local_swsscommon//:swsscommon",
+        "//bazel/swsscommon:swsscommon",
         "@local_zmq//:zmq",
     ],
 )
@@ -119,7 +119,7 @@ cc_test(
         "@local_saimetadata//:saimeta",
         "@local_saimetadata//:saimetadata",
         "@local_saivs//:saivs",
-        "@local_swsscommon//:swsscommon",
+        "//bazel/swsscommon:swsscommon",
         "@local_zmq//:zmq",
     ],
 )

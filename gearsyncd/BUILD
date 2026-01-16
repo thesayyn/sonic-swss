@@ -19,6 +19,6 @@ cc_binary(
         "//lib:lib_utils",
         "@local_libnl3//:libnl-route-3",
         "@local_libnl3//:libnl3",
-        "@local_swsscommon//:swsscommon",
+        "//bazel/swsscommon:swsscommon",
     ],
 )

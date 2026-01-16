@@ -25,6 +25,6 @@ cc_test(
         "@local_hiredis//:hiredis",
         "@local_libnl3//:libnl-genl-3",
         "@local_saimetadata//:saimeta",
-        "@local_swsscommon//:swsscommon",
+        "//bazel/swsscommon:swsscommon",
     ],
 )

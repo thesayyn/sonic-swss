@@ -16,9 +16,10 @@ load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 
 #rules_foreign_cc_dependencies()
 
-load("//:bazel/swsscommon/swsscommon.bzl", "swsscommon_configure")
-
-swsscommon_configure(name = "local_swsscommon")
+# Taken from @sonic_swss_common
+# load("//:bazel/swsscommon/swsscommon.bzl", "swsscommon_configure")
+#
+# swsscommon_configure(name = "local_swsscommon")
 
 load("//:bazel/hiredis/hiredis.bzl", "hiredis_configure")
 

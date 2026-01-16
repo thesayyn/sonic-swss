@@ -235,7 +235,7 @@ cc_library(
     deps = [
         "@local_saimetadata//:saimeta",
         "@local_saimetadata//:saimetadata",
-        "@local_swsscommon//:swsscommon",
+        "//bazel/swsscommon:swsscommon",
         "@local_zmq//:zmq",
         "@local_dashapi//:dashapi",
     ],
@@ -262,7 +262,7 @@ cc_library(
         "@local_saimetadata//:saimeta",
         "@local_saimetadata//:saimetadata",
         "@local_sairedis//:sairedis",
-        "@local_swsscommon//:swsscommon",
+        "//bazel/swsscommon:swsscommon",
         "@local_zmq//:zmq",
         "@local_dashapi//:dashapi",
     ],
@@ -385,7 +385,7 @@ cc_test(
         "@local_saimetadata//:saimeta",
         "@local_saimetadata//:saimetadata",
         "@local_sairedis//:sairedis",
-        "@local_swsscommon//:swsscommon",
+        "//bazel/swsscommon:swsscommon",
         "@local_zmq//:zmq",
         "@local_dashapi//:dashapi",
     ] + select({
@@ -429,7 +429,7 @@ cc_binary(
     local_defines = DEFAULT_DEFINES,
     deps = [
         "@local_hiredis//:hiredis",
-        "@local_swsscommon//:swsscommon",
+        "//bazel/swsscommon:swsscommon",
     ],
 )
 
@@ -441,7 +441,7 @@ cc_binary(
     local_defines = DEFAULT_DEFINES,
     deps = [
         "@local_hiredis//:hiredis",
-        "@local_swsscommon//:swsscommon",
+        "//bazel/swsscommon:swsscommon",
     ],
 )
 
@@ -468,7 +468,7 @@ cc_library(
         "@local_saimetadata//:saimeta",
         "@local_saimetadata//:saimetadata",
         "@local_saivs//:saivs",
-        "@local_swsscommon//:swsscommon",
+        "//bazel/swsscommon:swsscommon",
         "@local_zmq//:zmq",
         "//lib:lib_utils",
     ],
