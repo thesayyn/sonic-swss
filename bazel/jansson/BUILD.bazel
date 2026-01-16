@@ -1,0 +1,13 @@
+package(default_visibility = ["//visibility:public"])
+
+# cc_library(
+alias(
+    name = "jansson_headers",
+    target = "@bookworm//libjansson4:libjansson4",
+)
+
+# cc_import(
+alias(
+    name = "jansson",
+    target = "@bookworm//libjansson4:libjansson4",
+)

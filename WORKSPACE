@@ -41,6 +41,10 @@ load("//:bazel/saimetadata/saimetadata.bzl", "saimetadata_configure")
 
 saimetadata_configure(name = "local_saimetadata")
 
+load("//:bazel/saivs/saivs.bzl", "saivs_configure")
+
+saivs_configure(name = "local_saivs")
+
 # -- 
 
 # Replaced with //bazel/zmq/BUILD.bazel
@@ -56,13 +60,9 @@ load("//:bazel/libteam/libteam.bzl", "libteam_configure")
 
 libteam_configure(name = "local_libteam")
 
-load("//:bazel/saivs/saivs.bzl", "saivs_configure")
-
-saivs_configure(name = "local_saivs")
-
-load("//:bazel/jansson/jansson.bzl", "jansson_configure")
-
-jansson_configure(name = "local_jansson")
+# load("//:bazel/jansson/jansson.bzl", "jansson_configure")
+#
+# jansson_configure(name = "local_jansson")
 #
 #load("@com_github_grpc_grpc//bazel:grpc_deps.bzl", "grpc_deps")
 #

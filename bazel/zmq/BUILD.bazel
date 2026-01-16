@@ -6,7 +6,7 @@ alias(
     target = "@bookworm//libzmq3-dev:libzmq3", # TODO BL: it's possible that it's zmq5
 )
 
-cc_import(
+alias(
     name = "zmq",
     target = "@bookworm//libzmq3-dev:libzmq3", # TODO BL: it's possible that it's zmq5
 )
