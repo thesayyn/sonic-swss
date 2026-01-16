@@ -1,0 +1,18 @@
+package(default_visibility = ["//visibility:public"])
+
+filegrou(name = 'empty', srcs = [])
+
+# cc_library(
+alias(
+    name = "sairedis_headers",
+    target = ":empty",
+)
+
+cc_import(
+    name = "sairedis",
+    hdrs = ["bazel/sairedis/sairedis_hdrs/sairedis.h"],  # see cc_library rule above
+    shared_library = "bazel/sairedis/sairedis_so/libsairedis.so",
+    deps = [
+        ":sairedis_headers"
+    ]
+)
