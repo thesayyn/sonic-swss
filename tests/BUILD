@@ -22,7 +22,7 @@ cc_test(
         "//orchagent:request_parser_lib",
         "@com_google_googletest//:gtest",
         "@com_google_googletest//:gtest_main",
-        "@local_hiredis//:hiredis",
+        "//bazel/hiredis:hiredis",
         "@local_libnl3//:libnl-genl-3",
         "@local_saimetadata//:saimeta",
         "//bazel/swsscommon:swsscommon",

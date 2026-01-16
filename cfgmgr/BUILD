@@ -270,7 +270,7 @@ cc_library(
         "//lib:lib_utils",
         "//orchagent:orchagent_lib",
         "//warmrestart:warmrestarthelper_lib",
-        "@local_hiredis//:hiredis",
+        "//bazel/hiredis:hiredis",
         "@local_libnl3//:libnl-genl-3",
         "@local_libnl3//:libnl-route-3",
         "@local_libnl3//:libnl3",

@@ -14,7 +14,7 @@ cc_binary(
     ],
     deps = [
         "//lib:lib_utils",
-        "@local_hiredis//:hiredis",
+        "//bazel/hiredis:hiredis",
         "@local_jansson//:jansson",
         "@local_libteam//:libteamdctl",
         "//bazel/swsscommon:swsscommon",

@@ -254,7 +254,7 @@ cc_library(
     linkopts = ["-lpthread", "-lprotobuf"],
     local_defines = DEFAULT_DEFINES,
     deps = [
-        "@local_hiredis//:hiredis",
+        "//bazel/hiredis:hiredis",
         "@local_libnl3//:libnl-genl-3",
         "@local_libnl3//:libnl-nf-3",
         "@local_libnl3//:libnl-route-3",
@@ -381,7 +381,7 @@ cc_test(
         "//tests/mock_tests:fake_response_publisher_lib",
         "@com_google_googletest//:gtest",
         "@com_google_googletest//:gtest_main",
-        "@local_hiredis//:hiredis",
+        "//bazel/hiredis:hiredis",
         "@local_saimetadata//:saimeta",
         "@local_saimetadata//:saimetadata",
         "@local_sairedis//:sairedis",
@@ -428,7 +428,7 @@ cc_binary(
     linkopts = ["-lhiredis -lswsscommon"],
     local_defines = DEFAULT_DEFINES,
     deps = [
-        "@local_hiredis//:hiredis",
+        "//bazel/hiredis:hiredis",
         "//bazel/swsscommon:swsscommon",
     ],
 )
@@ -440,7 +440,7 @@ cc_binary(
     linkopts = ["-lpthread"],
     local_defines = DEFAULT_DEFINES,
     deps = [
-        "@local_hiredis//:hiredis",
+        "//bazel/hiredis:hiredis",
         "//bazel/swsscommon:swsscommon",
     ],
 )
@@ -461,7 +461,7 @@ cc_library(
         "//conditions:default": ["-g -DNDEBUG"],
     }),
     deps = [
-        "@local_hiredis//:hiredis",
+        "//bazel/hiredis:hiredis",
         "@local_libnl3//:libnl-genl-3",
         "@local_libnl3//:libnl-route-3",
         "@local_libnl3//:libnl3",

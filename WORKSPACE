@@ -21,10 +21,11 @@ load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 #
 # swsscommon_configure(name = "local_swsscommon")
 
-load("//:bazel/hiredis/hiredis.bzl", "hiredis_configure")
-
-hiredis_configure(name = "local_hiredis")
-
+# Replaced with deb package in //bazel/hiredis/BUILD.bazel
+# load("//:bazel/hiredis/hiredis.bzl", "hiredis_configure")
+#
+# hiredis_configure(name = "local_hiredis")
+#
 load("//:bazel/libnl3/libnl3.bzl", "libnl3_configure")
 
 libnl3_configure(name = "local_libnl3")

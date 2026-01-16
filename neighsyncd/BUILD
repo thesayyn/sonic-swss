@@ -25,7 +25,7 @@ cc_binary(
         "//cfgmgr:shellcmd",
         "//lib:lib_utils",
         "//warmrestart:warmrestartassist_lib",
-        "@local_hiredis//:hiredis",
+        "//bazel/hiredis:hiredis",
         "@local_libnl3//:libnl-route-3",
         "@local_libnl3//:libnl3",
         "//bazel/swsscommon:swsscommon",
