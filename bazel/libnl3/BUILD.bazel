@@ -4,30 +4,30 @@ package(default_visibility = ["//visibility:public"])
 # cc_library(
 alias(
     name = "libnl3_headers",
-    target = "@bookworm//libnl-3-dev:libnl-3", # TODO BL: This is probably not right, will fail loudly
+    actual = "@bookworm//libnl-3-dev:libnl-3", # TODO BL: This is probably not right, will fail loudly
 )
 
 # cc_import(
 alias(
     name = "libnl3",
-    target = "@bookworm//libnl-3-dev:libnl-3",
+    actual = "@bookworm//libnl-3-dev:libnl-3",
 )
 
 # cc_import(
 alias(
     name = "libnl-route-3",
-    target = "@bookworm//libnl-route-3-dev:libnl-route-3-dev",
+    actual = "@bookworm//libnl-route-3-dev:libnl-route-3-dev",
 )
 
 # cc_import(
 alias(
     name = "libnl-genl-3",
-    target = "@bookworm//libnl-genl-3-dev:libnl-genl-3-dev",
+    actual = "@bookworm//libnl-genl-3-dev:libnl-genl-3-dev",
 )
 
 # cc_import(
 alias(
     name = "libnl-nf-3",
-    target = "@bookworm//libnl-nf-3-dev:libnl-nf-3-dev",
+    actual = "@bookworm//libnl-nf-3-dev:libnl-nf-3-dev",
 )
 

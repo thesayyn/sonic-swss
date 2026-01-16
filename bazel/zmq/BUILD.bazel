@@ -3,10 +3,10 @@ package(default_visibility = ["//visibility:public"])
 # cc_library(
 alias(
     name = "zmq_headers",
-    target = "@bookworm//libzmq3-dev:libzmq3", # TODO BL: it's possible that it's zmq5
+    actual = "@bookworm//libzmq3-dev:libzmq3", # TODO BL: it's possible that it's zmq5
 )
 
 alias(
     name = "zmq",
-    target = "@bookworm//libzmq3-dev:libzmq3", # TODO BL: it's possible that it's zmq5
+    actual = "@bookworm//libzmq3-dev:libzmq3", # TODO BL: it's possible that it's zmq5
 )
