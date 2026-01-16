@@ -9,5 +9,7 @@ alias(
 # cc_import(
 alias(
     name = "jansson",
-    actual = "@bookworm//libjansson4:libjansson4",
+    # TODO BL: This is wrong, but weirdly there is no alias in @bookworm that depends on the real target
+    # actual = "@bookworm//libjansson4:libjansson4",
+    actual = "@@rules_distroless++apt+bookworm_libjansson4-amd64_2.14-2//:libjansson4",
 )

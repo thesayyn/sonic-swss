@@ -1,6 +1,6 @@
 package(default_visibility = ["//visibility:public"])
 
-filegrou(name = 'empty', srcs = [])
+filegroup(name = 'empty', srcs = [])
 
 # cc_library(
 alias(
