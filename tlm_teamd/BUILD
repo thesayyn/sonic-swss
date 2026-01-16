@@ -16,7 +16,7 @@ cc_binary(
         "//lib:lib_utils",
         "//bazel/hiredis:hiredis",
         "//bazel/jansson:jansson",
-        "@local_libteam//:libteamdctl",
+        "//bazel/libteam:libteamdctl",
         "//bazel/swsscommon:swsscommon",
     ],
 )

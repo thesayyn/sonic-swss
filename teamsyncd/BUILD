@@ -13,7 +13,7 @@ cc_binary(
         "//bazel/hiredis:hiredis",
         "//bazel/libnl3:libnl-route-3",
         "//bazel/libnl3:libnl3",
-        "@local_libteam//:libteam",
+        "//bazel/libteam:libteam",
         "//bazel/swsscommon:swsscommon",
     ],
 )

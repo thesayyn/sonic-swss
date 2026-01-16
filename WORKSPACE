@@ -45,6 +45,11 @@ load("//:bazel/saivs/saivs.bzl", "saivs_configure")
 
 saivs_configure(name = "local_saivs")
 
+# TODO BL: We're not building these for now, because they are built from https://github.com/sonic-net/sonic-dash-api
+load("//:bazel/dashapi/dashapi.bzl", "dashapi_configure")
+
+dashapi_configure(name = "local_dashapi")
+
 # -- 
 
 # Replaced with //bazel/zmq/BUILD.bazel
@@ -52,20 +57,21 @@ saivs_configure(name = "local_saivs")
 #
 # zmq_configure(name = "local_zmq")
 
-load("//:bazel/dashapi/dashapi.bzl", "dashapi_configure")
+# Replaced with //bazel/libteam/BUILD.bazel
+#
+# load("//:bazel/libteam/libteam.bzl", "libteam_configure")
+#
+# libteam_configure(name = "local_libteam")
 
-dashapi_configure(name = "local_dashapi")
 
-load("//:bazel/libteam/libteam.bzl", "libteam_configure")
-
-libteam_configure(name = "local_libteam")
-
+# Replaced with //bazel/jansson/BUILD.bazel
 # load("//:bazel/jansson/jansson.bzl", "jansson_configure")
 #
 # jansson_configure(name = "local_jansson")
 #
 #load("@com_github_grpc_grpc//bazel:grpc_deps.bzl", "grpc_deps")
-#
+
+
 #grpc_deps()
 #
 #load("@com_github_grpc_grpc//bazel:grpc_extra_deps.bzl", "grpc_extra_deps")
