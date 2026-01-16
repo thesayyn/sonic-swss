@@ -16,9 +16,7 @@ def _strip_binary_and_extract_debug_impl(ctx):
     stripped_binary_out = ctx.outputs.stripped_binary
     debug_symbols_out = ctx.outputs.debug_symbols
 
-    # todo: update bazel version to have a hermetic objcopy path
-    # objcopy_path = ctx.toolchains["@bazel_tools//tools/cpp:toolchain_type"].cc.objcopy_executable
-    objcopy_path = "/usr/bin/objcopy"
+    objcopy_path = ctx.toolchains["@bazel_tools//tools/cpp:toolchain_type"].cc.objcopy_executable
     if not objcopy_path:
         fail("Could not find objcopy executable in C++ toolchain")
 
