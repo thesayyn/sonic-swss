@@ -1,24 +1,15 @@
 package(default_visibility = ["//visibility:public"])
 
-# cc_library(
-alias(
-    name = "libteam_headers",
-    actual = "@bookworm//libteam5:libteam5",
-)
-
 # cc_import(
 alias(
     name = "libteam",
-    # actual = "@bookworm//libteam5:libteam5",
-    # TODO BL: This is wrong, but weirdly there is no alias in @bookworm that depends on the 
-    # cc_library  @@rules_distroless++apt+bookworm_libteam5-amd64_1.31-1//:libteam5
-    actual = "@@rules_distroless++apt+bookworm_libteam5-amd64_1.31-1//:libteam5",
+    actual = "@bookworm//libteam-dev:libteam",
 )
 
 # cc_import(
 alias(
     name = "libteamdctl",
-    # TODO BL: This is wrong, but weirdly there is no alias in @bookworm that depends on the real target
-    # actual = "@bookworm//libteamdctl:libteamdctl",
-    actual = "@@rules_distroless++apt+bookworm_libteamdctl0-amd64_1.31-1//:libteamdctl0",
+    # TODO BL: Either unify with the above or figure out whant's wrong.
+    # This is the target exporting teamdctl.h which we need.
+    actual = "@bookworm//libteam-dev:libteam",
 )

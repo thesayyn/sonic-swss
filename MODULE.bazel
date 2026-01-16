@@ -53,8 +53,10 @@ apt.install(
         "libzmq3-dev",
         "libzmq5",
         "libjansson4",
+        "libjansson-dev",
         "libteam5",
         "libteamdctl0",
+        "libteam-dev",
 
         # TODO BL: this is a preinstalled package from https://github.com/sonic-net/sonic-sairedis, but we may want to migrate that to Bazel
         # "libsairedis",
