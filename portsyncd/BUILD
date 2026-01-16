@@ -19,8 +19,8 @@ cc_library(
         "//cfgmgr:shellcmd",
         "//lib:lib_utils",
         "//bazel/hiredis:hiredis",
-        "@local_libnl3//:libnl-route-3",
-        "@local_libnl3//:libnl3",
+        "//bazel/libnl3:libnl-route-3",
+        "//bazel/libnl3:libnl3",
         "//bazel/swsscommon:swsscommon",
     ],
 )

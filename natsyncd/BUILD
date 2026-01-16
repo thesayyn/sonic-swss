@@ -14,9 +14,9 @@ cc_binary(
     deps = [
         "//warmrestart:warmrestartassist_lib",
         "//bazel/hiredis:hiredis",
-        "@local_libnl3//:libnl-nf-3",
-        "@local_libnl3//:libnl-route-3",
-        "@local_libnl3//:libnl3",
+        "//bazel/libnl3:libnl-nf-3",
+        "//bazel/libnl3:libnl-route-3",
+        "//bazel/libnl3:libnl3",
         "//bazel/swsscommon:swsscommon",
     ],
 )

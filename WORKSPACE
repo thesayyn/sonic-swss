@@ -26,9 +26,11 @@ load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 #
 # hiredis_configure(name = "local_hiredis")
 #
-load("//:bazel/libnl3/libnl3.bzl", "libnl3_configure")
 
-libnl3_configure(name = "local_libnl3")
+# Replaced with deb packages in //bazel/libnl3
+# load("//:bazel/libnl3/libnl3.bzl", "libnl3_configure")
+#
+# libnl3_configure(name = "local_libnl3")
 
 load("//:bazel/sairedis/sairedis.bzl", "sairedis_configure")
 

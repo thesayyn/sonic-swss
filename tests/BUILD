@@ -23,7 +23,7 @@ cc_test(
         "@com_google_googletest//:gtest",
         "@com_google_googletest//:gtest_main",
         "//bazel/hiredis:hiredis",
-        "@local_libnl3//:libnl-genl-3",
+        "//bazel/libnl3:libnl-genl-3",
         "@local_saimetadata//:saimeta",
         "//bazel/swsscommon:swsscommon",
     ],

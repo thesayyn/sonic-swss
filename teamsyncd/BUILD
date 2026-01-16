@@ -11,8 +11,8 @@ cc_binary(
     copts = add_debug_to_copts(),
     deps = [
         "//bazel/hiredis:hiredis",
-        "@local_libnl3//:libnl-route-3",
-        "@local_libnl3//:libnl3",
+        "//bazel/libnl3:libnl-route-3",
+        "//bazel/libnl3:libnl3",
         "@local_libteam//:libteam",
         "//bazel/swsscommon:swsscommon",
     ],
