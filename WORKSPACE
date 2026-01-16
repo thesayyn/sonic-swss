@@ -32,6 +32,7 @@ load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 #
 # libnl3_configure(name = "local_libnl3")
 
+# TODO BL: We're punting on these for now, they come from https://github.com/sonic-net/sonic-sairedis
 load("//:bazel/sairedis/sairedis.bzl", "sairedis_configure")
 
 sairedis_configure(name = "local_sairedis")
@@ -40,9 +41,12 @@ load("//:bazel/saimetadata/saimetadata.bzl", "saimetadata_configure")
 
 saimetadata_configure(name = "local_saimetadata")
 
-load("//:bazel/zmq/zmq.bzl", "zmq_configure")
+# -- 
 
-zmq_configure(name = "local_zmq")
+# Replaced with //bazel/zmq/BUILD.bazel
+# load("//:bazel/zmq/zmq.bzl", "zmq_configure")
+#
+# zmq_configure(name = "local_zmq")
 
 load("//:bazel/dashapi/dashapi.bzl", "dashapi_configure")
 

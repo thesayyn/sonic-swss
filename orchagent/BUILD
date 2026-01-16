@@ -236,7 +236,7 @@ cc_library(
         "@local_saimetadata//:saimeta",
         "@local_saimetadata//:saimetadata",
         "//bazel/swsscommon:swsscommon",
-        "@local_zmq//:zmq",
+        "//bazel/zmq:zmq",
         "@local_dashapi//:dashapi",
     ],
 )
@@ -263,7 +263,7 @@ cc_library(
         "@local_saimetadata//:saimetadata",
         "@local_sairedis//:sairedis",
         "//bazel/swsscommon:swsscommon",
-        "@local_zmq//:zmq",
+        "//bazel/zmq:zmq",
         "@local_dashapi//:dashapi",
     ],
 )
@@ -386,7 +386,7 @@ cc_test(
         "@local_saimetadata//:saimetadata",
         "@local_sairedis//:sairedis",
         "//bazel/swsscommon:swsscommon",
-        "@local_zmq//:zmq",
+        "//bazel/zmq:zmq",
         "@local_dashapi//:dashapi",
     ] + select({
         "//:asan": [
@@ -469,7 +469,7 @@ cc_library(
         "@local_saimetadata//:saimetadata",
         "@local_saivs//:saivs",
         "//bazel/swsscommon:swsscommon",
-        "@local_zmq//:zmq",
+        "//bazel/zmq:zmq",
         "//lib:lib_utils",
     ],
 )

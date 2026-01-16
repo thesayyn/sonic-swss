@@ -52,6 +52,9 @@ apt.install(
         "libhiredis0.14",
         "libzmq3-dev",
         "libzmq5",
+
+        # TODO BL: this is a preinstalled package from https://github.com/sonic-net/sonic-sairedis, but we may want to migrate that to Bazel
+        # "libsairedis",
     ],
     suites = [
         "bookworm",

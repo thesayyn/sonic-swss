@@ -276,6 +276,6 @@ cc_library(
         "//bazel/libnl3:libnl3",
         "@local_saivs//:saivs",
         "//bazel/swsscommon:swsscommon",
-        "@local_zmq//:zmq",
+        "//bazel/zmq:zmq",
     ],
 )
