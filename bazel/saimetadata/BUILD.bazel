@@ -1,0 +1,40 @@
+package(default_visibility = ["//visibility:public"])
+
+# trick to export headers in a convenient way
+# cc_library(
+#     name = "saimetadata_headers",
+#     hdrs = [],
+#     # TODO BL: Fix
+#     # hdrs = glob([
+#     #     "bazel/saimetadata/saimetadata_hdrs/**/*.h",
+#     # ], exclude = ["bazel/saimetadata/saimetadata_hdrs/sairedis.h"]),
+#     includes = [
+#         "bazel/saimetadata/saimetadata_hdrs",
+#     ],
+#     strip_include_prefix = "bazel/saimetadata/saimetadata_hdrs",
+#     deps = [
+#         "@local_sairedis//:sairedis_headers",
+#     ]
+# )
+#
+alias(
+    name = "saimetadata",
+    actual = "@sonic_sairedis//meta:saimetadata",
+    # TODO BL: Fix
+    # deps = [
+    #     ":saimetadata_headers",
+    # ],
+)
+
+alias(
+  name = "saimeta",
+  actual = "@sonic_sairedis//meta:saimeta",
+)
+# cc_import(
+#     name = "saimeta",
+#     hdrs = [],  # see cc_library rule above
+#     shared_library = "bazel/saimetadata/saimetadata_so/libsaimeta.so",
+#     deps = [
+#         ":saimetadata_headers",
+#     ],
+# )

@@ -91,4 +91,10 @@ local_path_override(
     path = "../../sonic-net/sonic-build-infra",
 )
 
+bazel_dep(name = "sonic-sairedis", version = "0.0.0", repo_name = "sonic_sairedis")
+local_path_override(
+    module_name = "sonic-sairedis",
+    path = "../../sonic-net/sonic-sairedis",
+)
+
 register_toolchains("@sonic-build-infra//toolchains/gcc:host_gcc_toolchain")
