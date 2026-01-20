@@ -68,28 +68,6 @@ apt.install(
 )
 use_repo(apt, "bookworm")
 
-# bazel_dep(name = "gcc_toolchain", version = "0.9.0")
-#
-# gcc_toolchains = use_extension("@gcc_toolchain//toolchain:module_extensions.bzl", "gcc_toolchains", dev_dependency = True)
-#
-# [
-#     [
-#         gcc_toolchains.toolchain(
-#             name = "gcc_toolchain_{}".format(arch),
-#             target_arch = arch,
-#         ),
-#         use_repo(gcc_toolchains, "gcc_toolchain_{}".format(arch)),
-#         register_toolchains(
-#             "@gcc_toolchain_{}//:cc_toolchain".format(arch),
-#             "@gcc_toolchain_{}//:fortran_toolchain".format(arch),
-#             dev_dependency = True,
-#         ),
-#     ]
-#     for arch in [
-#         "x86_64",
-#     ]
-# ]
-
 bazel_dep(name = "sonic-swss-common", version = "0.0.0", repo_name = "sonic_swss_common")
 
 # git_override(
@@ -114,23 +92,3 @@ local_path_override(
 )
 
 register_toolchains("@sonic-build-infra//toolchains/gcc:host_gcc_toolchain")
-
-# TODO BL: not sure we need Python for now.
-#uv = use_extension("@aspect_rules_py//uv/unstable:extension.bzl", "uv")
-#uv.declare_hub(hub_name = "pip")
-#uv.declare_venv(
-#    hub_name = "pip",
-#    venv_name = "default",
-#)
-#uv.lockfile(
-#    src = "//dockers/docker-base-bookworm:uv.lock",
-#    hub_name = "pip",
-#    venv_name = "default",
-#)
-#uv.override_requirement(
-#    hub_name = "pip",
-#    requirement = "libyang",
-#    target = "@libyang3_py3",
-#    venv_name = "default",
-#)
-#use_repo(uv, "pip")
