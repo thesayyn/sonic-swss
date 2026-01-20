@@ -2,17 +2,12 @@ package(default_visibility = ["//visibility:public"])
 
 filegroup(name = 'empty', srcs = [])
 
-# cc_library(
 alias(
-    name = "sairedis_headers",
-    actual = ":empty",
+    name = "sairedis",
+    actual = "@sonic_sairedis//lib:sairedis",
+    # TODO BL: Fix
+    # deps = [
+    #     ":sairedis_headers",
+    # ],
 )
 
-cc_import(
-    name = "sairedis",
-    hdrs = ["bazel/sairedis/sairedis_hdrs/sairedis.h"],  # see cc_library rule above
-    shared_library = "bazel/sairedis/sairedis_so/libsairedis.so",
-    deps = [
-        ":sairedis_headers"
-    ]
-)
