@@ -116,8 +116,8 @@ cc_test(
         "//bazel/libnl3:libnl-genl-3",
         "//bazel/libnl3:libnl-route-3",
         "//bazel/libnl3:libnl3",
-        "@local_saimetadata//:saimeta",
-        "@local_saimetadata//:saimetadata",
+        "//bazel/saimetadata:saimeta",
+        "//bazel/saimetadata:saimetadata",
         "@local_saivs//:saivs",
         "//bazel/swsscommon:swsscommon",
         "//bazel/zmq:zmq",
@@ -192,7 +192,7 @@ cc_test(
     deps = [
         ":common_test_lib",
         "//orchagent:response_publisher_lib",
-        "@local_saimetadata//:saimeta",
-        "@local_saimetadata//:saimetadata",
+        "//bazel/saimetadata:saimeta",
+        "//bazel/saimetadata:saimetadata",
     ],
 )

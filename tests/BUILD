@@ -24,7 +24,7 @@ cc_test(
         "@com_google_googletest//:gtest_main",
         "//bazel/hiredis:hiredis",
         "//bazel/libnl3:libnl-genl-3",
-        "@local_saimetadata//:saimeta",
+        "//bazel/saimetadata:saimeta",
         "//bazel/swsscommon:swsscommon",
     ],
 )
