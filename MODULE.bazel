@@ -25,7 +25,6 @@ local_path_override(
   path = "../../bazel-contrib/rules_distroless",
 )
 
-
 apt = use_extension("@rules_deb//apt:extensions.bzl", "apt")
 
 # TODO BL: Copypasted from https://github.com/thesayyn/sonic-buildimage/blob/9c66e0cb376b616ced4e2f5b22e383260e811969/dockers/docker-base-bookworm/base_bookworm.MODULE.bazel#L2C1-L16C1
@@ -91,10 +90,16 @@ local_path_override(
     path = "../../sonic-net/sonic-build-infra",
 )
 
+register_toolchains("@sonic-build-infra//toolchains/gcc:host_gcc_toolchain")
+
 bazel_dep(name = "sonic-sairedis", version = "0.0.0", repo_name = "sonic_sairedis")
 local_path_override(
     module_name = "sonic-sairedis",
     path = "../../sonic-net/sonic-sairedis",
 )
 
-register_toolchains("@sonic-build-infra//toolchains/gcc:host_gcc_toolchain")
+bazel_dep(name = "sonic-dash-api", version = "0.0.0", repo_name = "sonic_dash_api")
+local_path_override(
+    module_name = "sonic-dash-api",
+    path = "../../sonic-net/sonic-dash-api",
+)

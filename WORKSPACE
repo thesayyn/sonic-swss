@@ -32,23 +32,23 @@ load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 #
 # libnl3_configure(name = "local_libnl3")
 
-# TODO BL: We're punting on these for now, they come from https://github.com/sonic-net/sonic-sairedis
-load("//:bazel/sairedis/sairedis.bzl", "sairedis_configure")
+# Migrated in local copy of sonic-sairedis
+# load("//:bazel/sairedis/sairedis.bzl", "sairedis_configure")
+#
+# sairedis_configure(name = "local_sairedis")
+#
+# load("//:bazel/saimetadata/saimetadata.bzl", "saimetadata_configure")
+#
+# saimetadata_configure(name = "local_saimetadata")
+#
+# load("//:bazel/saivs/saivs.bzl", "saivs_configure")
+#
+# saivs_configure(name = "local_saivs")
 
-sairedis_configure(name = "local_sairedis")
-
-load("//:bazel/saimetadata/saimetadata.bzl", "saimetadata_configure")
-
-saimetadata_configure(name = "local_saimetadata")
-
-load("//:bazel/saivs/saivs.bzl", "saivs_configure")
-
-saivs_configure(name = "local_saivs")
-
-# TODO BL: We're not building these for now, because they are built from https://github.com/sonic-net/sonic-dash-api
-load("//:bazel/dashapi/dashapi.bzl", "dashapi_configure")
-
-dashapi_configure(name = "local_dashapi")
+# Migrated in local copy of sonic-dash-api
+# load("//:bazel/dashapi/dashapi.bzl", "dashapi_configure")
+#
+# dashapi_configure(name = "local_dashapi")
 
 # -- 
 

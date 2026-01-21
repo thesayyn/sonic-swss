@@ -1,0 +1,6 @@
+package(default_visibility = ["//visibility:public"])
+
+alias(
+    name = "dashapi",
+    actual = "@sonic_dash_api//:dashapi",
+)

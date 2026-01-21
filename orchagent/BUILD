@@ -237,7 +237,7 @@ cc_library(
         "//bazel/saimetadata:saimetadata",
         "//bazel/swsscommon:swsscommon",
         "//bazel/zmq:zmq",
-        "@local_dashapi//:dashapi",
+        "//bazel/dashapi:dashapi",
     ],
 )
 
@@ -264,7 +264,7 @@ cc_library(
         "//bazel/sairedis:sairedis",
         "//bazel/swsscommon:swsscommon",
         "//bazel/zmq:zmq",
-        "@local_dashapi//:dashapi",
+        "//bazel/dashapi:dashapi",
     ],
 )
 
@@ -387,7 +387,7 @@ cc_test(
         "//bazel/sairedis:sairedis",
         "//bazel/swsscommon:swsscommon",
         "//bazel/zmq:zmq",
-        "@local_dashapi//:dashapi",
+        "//bazel/dashapi:dashapi",
     ] + select({
         "//:asan": [
             "//lib:asan",

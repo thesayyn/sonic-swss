@@ -16,8 +16,3 @@ alias(
 #     ],
 #     strip_include_prefix = "bazel/saivs/saivs_hdrs",
 # )
-
-alias(
-  name = "saivs",
-  actual = "@sonic_sairedis//vslib:saivs",
-)

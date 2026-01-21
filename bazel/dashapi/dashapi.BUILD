@@ -1,18 +1,5 @@
 package(default_visibility = ["//visibility:public"])
 
-# trick to export headers in a convenient way
-cc_library(
-    name = "dashapi_headers",
-    hdrs = glob([
-        "bazel/dashapi/dashapi_hdrs/dashapi*.h",
-        "bazel/dashapi/dashapi_hdrs/dashapi*.hpp",
-    ]),
-    includes = [
-        "bazel/dashapi/dashapi_hdrs",
-    ],
-    strip_include_prefix = "bazel/dashapi/dashapi_hdrs",
-)
-
 cc_import(
     name = "dashapi",
     hdrs = [],  # see cc_library rule above
@@ -21,3 +8,17 @@ cc_import(
         ":dashapi_headers"
     ]
 )
+
+# trick to export headers in a convenient way
+# cc_library(
+#     name = "dashapi_headers",
+#     hdrs = glob([
+#         "bazel/dashapi/dashapi_hdrs/dashapi*.h",
+#         "bazel/dashapi/dashapi_hdrs/dashapi*.hpp",
+#     ]),
+#     includes = [
+#         "bazel/dashapi/dashapi_hdrs",
+#     ],
+#     strip_include_prefix = "bazel/dashapi/dashapi_hdrs",
+# )
+
