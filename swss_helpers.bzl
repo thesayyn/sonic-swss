@@ -16,9 +16,17 @@ def _strip_binary_and_extract_debug_impl(ctx):
     stripped_binary_out = ctx.outputs.stripped_binary
     debug_symbols_out = ctx.outputs.debug_symbols
 
-    objcopy_path = ctx.toolchains["@bazel_tools//tools/cpp:toolchain_type"].cc.objcopy_executable
-    if not objcopy_path:
-        fail("Could not find objcopy executable in C++ toolchain")
+    # tcn = ctx.toolchains["@bazel_tools//tools/cpp:toolchain_type"]
+    # print("BL: _strip_binary_and_extract_debug_impl(toolchain={})".format(
+    #   # tcn.cc.hellp,
+    #   # tcn.cc.objcopy_executable,
+    # ))
+
+    # TODO BL: Make this work
+    # objcopy_path = ctx.toolchains["@bazel_tools//tools/cpp:toolchain_type"].cc.objcopy_executable
+    # if not objcopy_path:
+    #     fail("Could not find objcopy executable in C++ toolchain")
+    objcopy_path = ctx.file._objcopy.path
 
     args = ctx.actions.args()
     args.add(input_binary.path)
@@ -94,6 +102,11 @@ strip_binary_and_extract_debug = rule(
             mandatory = True,
             allow_single_file = True,  # Expects the output file from cc_binary
             doc = "The original binary file target (e.g., cc_binary).",
+        ),
+        "_objcopy": attr.label(
+            default = "@sonic-build-infra//toolchains/gcc/tools:objcopy",
+            allow_single_file = True,
+            doc = "TODO BL: this shouldn't exist, it's just to bypass the toolchain limitaitions",
         ),
     },
     toolchains = ["@bazel_tools//tools/cpp:toolchain_type"],
