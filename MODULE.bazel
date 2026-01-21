@@ -1,14 +1,17 @@
 module(name = "sonic-swss")
 
 # Deps from //:swss_deps.bzl
-bazel_dep(name = "googletest", version = "1.16.0", repo_name = "com_google_googletest")
+bazel_dep(name = "googletest", version = "1.17.0", repo_name = "com_google_googletest")
 
-#bazel_dep(name = "grpc", version = "1.58.0")
-bazel_dep(name = "grpc", version = "1.62.1")  # TODO BL:  1.58.0 was not in the BCR, patching for now
+# TODO BL:  1.58.0 was not in the BCR, patching for now
+# bazel_dep(name = "grpc", version = "1.58.0")
+bazel_dep(name = "grpc", version = "1.62.1")
 
-#bazel_dep(name = "protobuf", version = "3.21.2")
-bazel_dep(name = "protobuf", version = "3.19.6")  # TODO BL: 3.21.2 was not in the BCR
-bazel_dep(name = "rules_pkg", version = "1.0.1")
+# TODO BL: 3.21.2 was not in the BCR, so we take the last one
+# bazel_dep(name = "protobuf", version = "3.21.2")
+bazel_dep(name = "protobuf", version = "33.4")
+
+bazel_dep(name = "rules_pkg", version = "1.1.0")
 bazel_dep(name = "rules_foreign_cc", version = "0.11.1")
 bazel_dep(name = "aspect_rules_py", version = "1.7.1")
 
