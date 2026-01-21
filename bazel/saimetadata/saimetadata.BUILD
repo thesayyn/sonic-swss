@@ -11,7 +11,7 @@ cc_library(
     ],
     strip_include_prefix = "bazel/saimetadata/saimetadata_hdrs",
     deps = [
-        "@local_sairedis//:sairedis_headers",
+        "//bazel/sairedis:sairedis_headers",
     ]
 )
 

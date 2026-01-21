@@ -274,7 +274,7 @@ cc_library(
         "//bazel/libnl3:libnl-genl-3",
         "//bazel/libnl3:libnl-route-3",
         "//bazel/libnl3:libnl3",
-        "@local_saivs//:saivs",
+        "//bazel/saivs:saivs",
         "//bazel/swsscommon:swsscommon",
         "//bazel/zmq:zmq",
     ],

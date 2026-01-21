@@ -467,7 +467,7 @@ cc_library(
         "//bazel/libnl3:libnl3",
         "//bazel/saimetadata:saimeta",
         "//bazel/saimetadata:saimetadata",
-        "@local_saivs//:saivs",
+        "//bazel/saivs:saivs",
         "//bazel/swsscommon:swsscommon",
         "//bazel/zmq:zmq",
         "//lib:lib_utils",
