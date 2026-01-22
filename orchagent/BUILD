@@ -230,7 +230,7 @@ cc_library(
     defines = [
         "DRAIN_MMU_WHEN_APPLYING_BUFFER_CONFIG",
     ],
-    linkopts = ["-lpthread", "-lprotobuf"],
+    linkopts = ["-lpthread"],
     local_defines = DEFAULT_DEFINES,
     deps = [
         "//bazel/saimetadata:saimeta",
@@ -251,7 +251,7 @@ cc_library(
     copts = [
         "-fno-stack-protector",
     ] + DEBUG_COPTS,
-    linkopts = ["-lpthread", "-lprotobuf"],
+    linkopts = ["-lpthread"],
     local_defines = DEFAULT_DEFINES,
     deps = [
         "//bazel/hiredis:hiredis",
