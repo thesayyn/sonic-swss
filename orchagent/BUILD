@@ -425,7 +425,8 @@ cc_binary(
     name = "routeresync",
     srcs = ["routeresync.cpp"],
     copts = DEBUG_COPTS,
-    linkopts = ["-lhiredis -lswsscommon"],
+    # TODO BL: I don't think we need these linkopts, we already depend on them
+    # linkopts = ["-lhiredis -lswsscommon"],
     local_defines = DEFAULT_DEFINES,
     deps = [
         "//bazel/hiredis:hiredis",
