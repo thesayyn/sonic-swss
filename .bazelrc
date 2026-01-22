@@ -1,8 +1,13 @@
-build --cxxopt='-std=c++14' --host_cxxopt='-std=c++14'
+# TODO BL: New versions of protobuf and googletest depend on new versions of abseil which need C++17
+# build --cxxopt='-std=c++14' --host_cxxopt='-std=c++14'
+build --cxxopt='-std=c++17' --host_cxxopt='-std=c++17'
 build --cxxopt='-Wall'
 build --cxxopt='-fPIC'
 build --cxxopt='-Wno-write-strings'
-build --cxxopt='-Werror'
+
+# TODO BL: Turning off -Werror until we get to a stable point
+# build --cxxopt='-Werror'
+
 build --cxxopt='-Wno-reorder'
 build --cxxopt='-Wcast-align'
 build --cxxopt='-Wcast-qual'
