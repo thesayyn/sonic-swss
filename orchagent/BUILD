@@ -265,6 +265,7 @@ cc_library(
         "//bazel/swsscommon:swsscommon",
         "//bazel/zmq:zmq",
         "//bazel/dashapi:dashapi",
+        "//bazel/dashapi:dashapi_proto",
     ],
 )
 

@@ -4,3 +4,8 @@ alias(
     name = "dashapi",
     actual = "@sonic_dash_api//:dashapi",
 )
+
+alias(
+    name = "dashapi_proto",
+    actual = "@sonic_dash_api//:dashapi_proto",
+)
