@@ -1,6 +1,10 @@
 """Helpers for building SWSS."""
 
 load("@rules_pkg//pkg:mappings.bzl", "pkg_attributes", "pkg_files")
+load("@rules_cc//cc:find_cc_toolchain.bzl", "CC_TOOLCHAIN_ATTRS", "find_cpp_toolchain", "use_cc_toolchain")
+load("@rules_cc//cc/common:cc_common.bzl", "cc_common")
+load("@rules_cc//cc:action_names.bzl", "OBJ_COPY_ACTION_NAME")
+
 
 DebugInfo = provider(
     "debug symbols for binaries",
@@ -16,18 +20,21 @@ def _strip_binary_and_extract_debug_impl(ctx):
     stripped_binary_out = ctx.outputs.stripped_binary
     debug_symbols_out = ctx.outputs.debug_symbols
 
-    # tcn = ctx.toolchains["@bazel_tools//tools/cpp:toolchain_type"]
-    # print("BL: _strip_binary_and_extract_debug_impl(toolchain={})".format(
-    #   # tcn.cc.hellp,
-    #   # tcn.cc.objcopy_executable,
-    # ))
+    # TODO BL: This is only available because we're using rules_cc
+    cc_toolchain = find_cpp_toolchain(ctx)
+    feature_configuration = cc_common.configure_features(
+       ctx = ctx,
+       cc_toolchain = cc_toolchain,
+       requested_features = ctx.features,
+       unsupported_features = ctx.disabled_features,
+    )
+    objcopy_path = cc_common.get_tool_for_action(
+       feature_configuration = feature_configuration,
+       action_name = OBJ_COPY_ACTION_NAME,
+    )
 
-    # TODO BL: Make this work
-    # objcopy_path = ctx.toolchains["@bazel_tools//tools/cpp:toolchain_type"].cc.objcopy_executable
-    # if not objcopy_path:
-    #     fail("Could not find objcopy executable in C++ toolchain")
-    objcopy_file = ctx.file._objcopy
-    objcopy_path = objcopy_file.path
+    if not objcopy_path:
+        fail("Could not find objcopy executable in C++ toolchain")
 
     args = ctx.actions.args()
     args.add(input_binary.path)
@@ -38,9 +45,7 @@ def _strip_binary_and_extract_debug_impl(ctx):
     # Define the set of input files needed by the action
     input_files = depset(
         transitive = [
-            # TODO BL: The same about objcopy not being in the toolchain
-            # depset([input_binary]),
-            depset([input_binary, objcopy_file]),
+            depset([input_binary]),
         ],
     )
 
@@ -106,11 +111,6 @@ strip_binary_and_extract_debug = rule(
             allow_single_file = True,  # Expects the output file from cc_binary
             doc = "The original binary file target (e.g., cc_binary).",
         ),
-        "_objcopy": attr.label(
-            default = "@sonic-build-infra//toolchains/gcc/tools:objcopy",
-            allow_single_file = True,
-            doc = "TODO BL: this shouldn't exist, it's just to bypass the toolchain limitaitions",
-        ),
     },
     toolchains = ["@bazel_tools//tools/cpp:toolchain_type"],
     outputs = {
@@ -119,6 +119,7 @@ strip_binary_and_extract_debug = rule(
         "debug_symbols": "%{name}.debug",  # File named <rule_name>.debug (e.g., "orchagent.debug")
     },
     doc = "Extracts compressed debug symbols to a .debug file, strips the binary, and adds a gnu_debuglink.",
+    fragments = ["cpp"],
 )
 
 def _create_stripped_binary_with_debug(name, target, **kwargs):
