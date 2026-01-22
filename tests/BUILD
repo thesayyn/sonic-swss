@@ -5,11 +5,13 @@ package(default_visibility = ["//visibility:public"])
 cc_test(
     name = "tests",
     srcs = [
-        "blackhole_counters_ut.cpp",
-        "congestion_counters_ut.cpp",
+        # TODO BL: Files don't exist anymore
+        # "blackhole_counters_ut.cpp",
+        # "congestion_counters_ut.cpp",
         "quoted_ut.cpp",
         "request_parser_ut.cpp",
         "swssnet_ut.cpp",
+        # TODO BL: Surely we need to add more tests here, for all the python files
     ],
     copts = add_debug_to_copts(),
     linkopts = [
