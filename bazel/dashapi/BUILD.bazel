@@ -7,5 +7,6 @@ alias(
 
 alias(
     name = "dashapi_proto",
-    actual = "@sonic_dash_api//:dashapi_proto",
+    actual = "@sonic_dash_api//:dashapi_proto_headers",
 )
+
