@@ -26,7 +26,8 @@ def _strip_binary_and_extract_debug_impl(ctx):
     # objcopy_path = ctx.toolchains["@bazel_tools//tools/cpp:toolchain_type"].cc.objcopy_executable
     # if not objcopy_path:
     #     fail("Could not find objcopy executable in C++ toolchain")
-    objcopy_path = ctx.file._objcopy.path
+    objcopy_file = ctx.file._objcopy
+    objcopy_path = objcopy_file.path
 
     args = ctx.actions.args()
     args.add(input_binary.path)
@@ -37,7 +38,9 @@ def _strip_binary_and_extract_debug_impl(ctx):
     # Define the set of input files needed by the action
     input_files = depset(
         transitive = [
-            depset([input_binary]),
+            # TODO BL: The same about objcopy not being in the toolchain
+            # depset([input_binary]),
+            depset([input_binary, objcopy_file]),
         ],
     )
 
