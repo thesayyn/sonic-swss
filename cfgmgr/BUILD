@@ -187,20 +187,21 @@ cc_binary(
     ],
 )
 
-cc_binary(
-    name = "switchmgrd",
-    srcs = [
-        "switchmgr.cpp",
-        "switchmgr.h",
-        "switchmgrd.cpp",
-    ],
-    copts = DEFAULT_COPTS,
-    linkopts = DEFAULT_LINKOPTS,
-    deps = [
-        "//cfgmgr:shellcmd",
-        "//orchagent:orchagent_lib_impl",
-    ],
-)
+# TODO BL: The source files don't exist
+# cc_binary(
+#     name = "switchmgrd",
+#     srcs = [
+#         "switchmgr.cpp",
+#         "switchmgr.h",
+#         "switchmgrd.cpp",
+#     ],
+#     copts = DEFAULT_COPTS,
+#     linkopts = DEFAULT_LINKOPTS,
+#     deps = [
+#         "//cfgmgr:shellcmd",
+#         "//orchagent:orchagent_lib_impl",
+#     ],
+# )
 
 cc_binary(
     name = "fabricmgrd",

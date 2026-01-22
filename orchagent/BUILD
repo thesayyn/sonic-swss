@@ -558,7 +558,8 @@ cc_library(
         "p4orch/route_manager.cpp",
         "p4orch/router_interface_manager.cpp",
         "p4orch/tables_definition_manager.cpp",
-        "p4orch/tests/mock_component_state_helper.h",
+        # TODO BL: This file doesn't exist
+        # "p4orch/tests/mock_component_state_helper.h",
         "p4orch/tests/mock_response_publisher.h",
         "p4orch/tests/mock_sai_switch.cpp",
         "p4orch/tests/mock_sai_switch.h",
