@@ -46,6 +46,7 @@ def _strip_binary_and_extract_debug_impl(ctx):
     input_files = depset(
         transitive = [
             depset([input_binary]),
+            cc_toolchain.all_files,
         ],
     )
 
