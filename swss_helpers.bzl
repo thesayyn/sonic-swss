@@ -21,6 +21,8 @@ def _strip_binary_and_extract_debug_impl(ctx):
     debug_symbols_out = ctx.outputs.debug_symbols
 
     # TODO BL: This is only available because we're using rules_cc
+    # We need it because the gcc_toolchain from sonic-build-infra is rules_based, so we need 
+    # all the provider magic from rules_cc.
     cc_toolchain = find_cpp_toolchain(ctx)
     feature_configuration = cc_common.configure_features(
        ctx = ctx,
