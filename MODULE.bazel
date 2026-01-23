@@ -1,20 +1,46 @@
 module(name = "sonic-swss")
 
+http_archive = use_repo_rule("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 # Deps from //:swss_deps.bzl
-bazel_dep(name = "googletest", version = "1.17.0", repo_name = "com_google_googletest")
+# They are http_archives because we don't want the wrong version of abseil to resolve and require C++17
+
+# bazel_dep(name = "googletest", version = "1.17.0", repo_name = "com_google_googletest")
+http_archive(
+    name = "com_google_googletest",
+    sha256 = "78c676fc63881529bf97bf9d45948d905a66833fbfa5318ea2cd7478cb98f399",
+    strip_prefix = "googletest-1.16.0",
+    urls = ["https://github.com/google/googletest/releases/download/v1.16.0/googletest-1.16.0.tar.gz"],
+)
 
 # TODO BL:  1.58.0 was not in the BCR, patching for now
 # bazel_dep(name = "grpc", version = "1.58.0")
-bazel_dep(name = "grpc", version = "1.62.1")
+# bazel_dep(name = "grpc", version = "1.62.1")
+# http_archive(
+#     name = "com_github_grpc_grpc",
+#     url = "https://github.com/grpc/grpc/archive/v1.58.0.zip",
+#     strip_prefix = "grpc-1.58.0",
+#     sha256 = "aa329c7de707a03511c88206ef4483e9346ab6336b6be4378d294060aa7400b3",
+#     patch_args = ["-p1"],
+# )
 
-# TODO BL: 3.21.2 was not in the BCR, so we take the last one
+# TODO BL: 3.21.2 was not in the BCR, so we take the closest one we can find
 # bazel_dep(name = "protobuf", version = "3.21.2")
-bazel_dep(name = "protobuf", version = "33.4")
+# bazel_dep(name = "protobuf", version = "3.19.6")
+# TODO BL: this is to make sure we stick to the version
+# single_version_override(module_name = "protobuf", version = "3.19.6")
+# bazel_dep(name = "protobuf", version = "33.4")
+
+# http_archive(
+#     name = "com_google_protobuf",
+#     url = "https://github.com/protocolbuffers/protobuf/archive/refs/tags/v3.21.2.zip",
+#     strip_prefix = "protobuf-3.21.2",
+#     sha256 = "8aa87d787ce460c48bd5a5ff037aa18a3dee586043c2611f0cd1d2022cc2f5a5",
+# )
 
 bazel_dep(name = "rules_pkg", version = "1.1.0")
 bazel_dep(name = "rules_foreign_cc", version = "0.11.1")
 bazel_dep(name = "aspect_rules_py", version = "1.7.1")
-bazel_dep(name = "rules_cc", version = "0.0.2")
+bazel_dep(name = "rules_cc", version = "0.2.14")
 
 # Deps we need for starlarkified rulesets
 bazel_dep(name = "platforms", version = "1.0.0")
@@ -60,9 +86,6 @@ apt.install(
         "libteam5",
         "libteamdctl0",
         "libteam-dev",
-
-        # TODO BL: this is a preinstalled package from https://github.com/sonic-net/sonic-sairedis, but we may want to migrate that to Bazel
-        # "libsairedis",
     ],
     suites = [
         "bookworm",
