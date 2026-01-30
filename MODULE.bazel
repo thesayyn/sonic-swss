@@ -125,6 +125,12 @@ local_path_override(
     path = "../../sonic-net/sonic-sairedis",
 )
 
+bazel_dep(name = "sai", version = "0.0.0")
+local_path_override(
+    module_name = "sai",
+    path = "../../sonic-net/sonic-sairedis/SAI",
+)
+
 bazel_dep(name = "sonic-dash-api", version = "0.0.0", repo_name = "sonic_dash_api")
 local_path_override(
     module_name = "sonic-dash-api",

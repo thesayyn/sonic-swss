@@ -373,7 +373,7 @@ cc_test(
     data = [
         "//cfgmgr:confg_mgr_data",
     ],
-    linkopts = ["-lpthread", "-lprotobuf"] + select({
+    linkopts = ["-lpthread"] + select({
         "//:asan": ["-lasan"],
         "//conditions:default": [],
     }),
