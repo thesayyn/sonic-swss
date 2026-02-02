@@ -106,7 +106,8 @@ cc_test(
     linkopts = COMMON_LINKOPTS + [
       # TODO BL: Let's pray that this works
       # "-Wl,--remap-inputs=/usr/lib/x86_64-linux-gnu/libbsd.so.0.11.7=/dev/null",
-      "-Wl,--remap-inputs=/usr/lib/x86_64-linux-gnu/libbsd.so.0.11.7=/usr/lib/x86_64-linux-gnu/libbsd.so.0.12.1",
+      # "-Wl,--remap-inputs=/usr/lib/x86_64-linux-gnu/libbsd.so.0.11.7=/usr/lib/x86_64-linux-gnu/libbsd.so.0.12.1",
+      "-Wl,--remap-inputs=/usr/lib/x86_64-linux-gnu/libbsd.so.0.11.7=/home/blorente/code/github.com/sonic-net/sonic-swss/libbsd.so.0.11.7",
     ],
     deps = [
         ":fake_response_publisher_lib",
@@ -123,7 +124,8 @@ cc_test(
         "//bazel/saimetadata:saimeta",
         "//bazel/saimetadata:saimetadata",
         "//bazel/saivs:saivs",
-        "//bazel/swsscommon:swsscommon_shared",
+        "//bazel/swsscommon:swsscommon",
+        # "//bazel/swsscommon:swsscommon_shared",
         "//bazel/zmq:zmq",
         # TODO BL: just to test
         # "@bookworm//libboost-dev:libboost",
@@ -131,7 +133,7 @@ cc_test(
 
     ],
     # linkstatic = False,
-    linkshared = True,
+    # linkshared = True,
 )
 
 # only works with --config=portsyncd_tests_opts

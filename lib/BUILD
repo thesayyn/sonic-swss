@@ -27,10 +27,7 @@ cc_library(
         "subintf.h",
         "recorder.h",
     ],
-    copts = [
-      # TODO BL: This is probably not right.
-        # "-I/usr/include/sai",
-    ] + add_debug_to_copts(),
+    copts = add_debug_to_copts(),
     linkopts = add_gcovpreload_to_linkopts(),
     deps = [
         "//bazel/swsscommon:swsscommon",

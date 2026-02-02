@@ -4,7 +4,7 @@ load("@rules_pkg//pkg:tar.bzl", "pkg_tar")
 load("//:swss_helpers.bzl", "create_pkg_files_of_stripped_binaries")
 
 # TODO BL: Please oh god remove this and make it work with BZLMOD
-exports_files(["libswsscommon.so"])
+exports_files(glob(["*.so"]))
 
 config_setting(
     name = "debug_mode",
