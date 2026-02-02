@@ -1,11 +1,47 @@
 package(default_visibility = ["//visibility:public"])
 
-alias(
-    name = "swsscommon_headers",
-    actual = "@sonic_swss_common//:common",
-)
+# alias(
+#     name = "swsscommon_headers",
+#     actual = "@sonic_swss_common//:common",
+# )
 
 alias(
   name = "swsscommon",
+  # TODO BL: testing to replace swsscommon with swsscommon_shared
   actual = "@sonic_swss_common//:libswsscommon",
+  # actual = ":swsscommon_shared",
 )
+
+alias(
+  name = "swsscommon_shared",
+  actual = "@sonic_swss_common//:libswsscommon_shared",
+)
+
+# cc_import(
+#   name = "swsscommon_shared",
+#   shared_library = "@sonic_swss_common//:libswsscommon_shared",
+# )
+
+# cc_static_library(
+# cc_shared_library(
+#     name = "swsscommon_archive",
+#     # hdrs = [],  # see cc_library rule above
+#     shared_lib_name = "libswsscommon.so",
+#     deps = [
+#         "@sonic_swss_common//:common",
+#     ],
+# )
+#
+#
+# cc_import(
+#   name = "swsscommon",
+#   # TODO BL: Please make this work from a bazel module
+#   shared_library = "@sonic_swss_common//:libswsscommon",
+#   # shared_library = "//:libswsscommon.so",
+#   deps = [
+#       # "@sonic_swss_common//:libswsscommon",
+#       # TODO BL: jsut to test the .so archive
+#       # "@bookworm//libboost-dev:libboost",
+#       # "@bookworm//libboost-serialization-dev:libboost-serialization",
+#   ],
+# )

@@ -86,6 +86,10 @@ apt.install(
         "libteam5",
         "libteamdctl0",
         "libteam-dev",
+
+        # TODO BL: Just to test the archive
+        "libboost-dev",
+        "libboost-serialization-dev",
     ],
     suites = [
         "bookworm",

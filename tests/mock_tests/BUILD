@@ -103,7 +103,11 @@ cc_test(
         "test_failure_handling.cpp",
     ] + ALL_TEST_HDRS,
     copts = COMMON_COPTS,
-    linkopts = COMMON_LINKOPTS,
+    linkopts = COMMON_LINKOPTS + [
+      # TODO BL: Let's pray that this works
+      # "-Wl,--remap-inputs=/usr/lib/x86_64-linux-gnu/libbsd.so.0.11.7=/dev/null",
+      "-Wl,--remap-inputs=/usr/lib/x86_64-linux-gnu/libbsd.so.0.11.7=/usr/lib/x86_64-linux-gnu/libbsd.so.0.12.1",
+    ],
     deps = [
         ":fake_response_publisher_lib",
         "//cfgmgr:cfgmgr_base_lib",
@@ -119,9 +123,15 @@ cc_test(
         "//bazel/saimetadata:saimeta",
         "//bazel/saimetadata:saimetadata",
         "//bazel/saivs:saivs",
-        "//bazel/swsscommon:swsscommon",
+        "//bazel/swsscommon:swsscommon_shared",
         "//bazel/zmq:zmq",
+        # TODO BL: just to test
+        # "@bookworm//libboost-dev:libboost",
+        # "@bookworm//libboost-serialization-dev:libboost-serialization",
+
     ],
+    # linkstatic = False,
+    linkshared = True,
 )
 
 # only works with --config=portsyncd_tests_opts
