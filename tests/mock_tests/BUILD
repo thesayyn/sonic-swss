@@ -158,7 +158,7 @@ cc_test(
       # TODO BL: This can't be the right way to do this,
       # but it's picking up libnl-nf-3 from the import which is just `.so`, and not the 
       # actual _so_libs, which is .so.200
-      "-Wl,-rpath=$ORIGIN/../../_solib_k8/_U_A_Arules_Udistroless++apt+bookworm_Ulibnl-nf-3-200-amd64_U3.7.0-0.2-b1_S_S_C_Uso_Ulibs___Uexternal_Srules_Udistroless++apt+bookworm_Ulibnl-nf-3-200-amd64_U3.7.0-0.2-b1_Susr_Slib_Sx86_U64-linux-gnu/",
+      # "-Wl,-rpath=$ORIGIN/../../_solib_k8/_U_A_Arules_Udistroless++apt+bookworm_Ulibnl-nf-3-200-amd64_U3.7.0-0.2-b1_S_S_C_Uso_Ulibs___Uexternal_Srules_Udistroless++apt+bookworm_Ulibnl-nf-3-200-amd64_U3.7.0-0.2-b1_Susr_Slib_Sx86_U64-linux-gnu/",
     ],
     dynamic_deps = [
       # "//bazel/swsscommon:swsscommon_shared",
@@ -182,6 +182,9 @@ cc_test(
        "//bazel/saimetadata:saimetadata",
        "//bazel/saivs:saivs",
        "//bazel/zmq:zmq",
+
+       # TODO BL: Figure out why we must depend on these wodeps directly and the -rpaths are not baked into the binary
+       "@@rules_distroless++apt+bookworm_libnl-nf-3-dev-amd64_3.7.0-0.2-b1//:libnl-nf-3_wodeps",
 
        # TODO BL: new deps
        "@bookworm//libyang2-dev:libyang2",
