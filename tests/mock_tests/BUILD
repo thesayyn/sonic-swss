@@ -154,6 +154,11 @@ cc_test(
       # TODO BL: These are also bad, and they may even work
       "-Lbazel-out/k8-fastbuild/bin/external/rules_distroless++apt+bookworm_libboost-serialization1.74-dev-amd64_1.74.0-ds1-21/usr/lib/x86_64-linux-gnu/",
       "-Wl,-rpath-link=bazel-out/k8-fastbuild/bin/external/rules_distroless++apt+bookworm_libboost-serialization1.74-dev-amd64_1.74.0-ds1-21/usr/lib/x86_64-linux-gnu",
+
+      # TODO BL: This can't be the right way to do this,
+      # but it's picking up libnl-nf-3 from the import which is just `.so`, and not the 
+      # actual _so_libs, which is .so.200
+      "-Wl,-rpath=$ORIGIN/../../_solib_k8/_U_A_Arules_Udistroless++apt+bookworm_Ulibnl-nf-3-200-amd64_U3.7.0-0.2-b1_S_S_C_Uso_Ulibs___Uexternal_Srules_Udistroless++apt+bookworm_Ulibnl-nf-3-200-amd64_U3.7.0-0.2-b1_Susr_Slib_Sx86_U64-linux-gnu/",
     ],
     dynamic_deps = [
       # "//bazel/swsscommon:swsscommon_shared",
@@ -186,6 +191,7 @@ cc_test(
        # "@bookworm//libboost-serialization1.74-dev:libboost-serialization1.74",
        "@@rules_distroless++apt+bookworm_libboost-serialization1.74-dev-amd64_1.74.0-ds1-21//:libboost-serialization1.74_wodeps",
     ],
+    # TODO BL: figure out what to do with these.
     additional_linker_inputs = [
       "@@rules_distroless++apt+bookworm_libboost-serialization1.74-dev-amd64_1.74.0-ds1-21//:usr/lib/x86_64-linux-gnu/libboost_serialization.so",
       "@@rules_distroless++apt+bookworm_libboost-serialization1.74-dev-amd64_1.74.0-ds1-21//:usr/lib/x86_64-linux-gnu/libboost_wserialization.so",
