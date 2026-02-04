@@ -90,6 +90,7 @@ apt.install(
         # TODO BL: Just to test the archive
         "libboost-dev",
         "libboost-serialization-dev",
+        "libboost-serialization1.74-dev",
     ],
     suites = [
         "bookworm",

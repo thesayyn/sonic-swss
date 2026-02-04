@@ -61,6 +61,37 @@ cc_library(
     ],
 )
 
+cc_library(
+    name = "tests_deps_wrapper",
+    deps = [
+          ":fake_response_publisher_lib",
+          "//cfgmgr:cfgmgr_base_lib",
+          "//lib:lib_utils",
+          "//orchagent:orchagent_test_lib",
+          "//warmrestart:warmrestartassist_lib",
+          "@com_google_googletest//:gtest",
+          "@com_google_googletest//:gtest_main",
+          "//bazel/hiredis:hiredis",
+          "//bazel/libnl3:libnl-genl-3",
+          "//bazel/libnl3:libnl-route-3",
+          "//bazel/libnl3:libnl3",
+          "//bazel/saimetadata:saimeta",
+          "//bazel/saimetadata:saimetadata",
+          "//bazel/saivs:saivs",
+          "//bazel/zmq:zmq",
+    ],
+    linkopts = COMMON_LINKOPTS + [
+      # Ref: https://linux.die.net/man/1/ld
+      # "-Wl,--exclude-libs=libcommon.a",
+      # TODO BL: This will ignore all entries of libcommon.a that happen _after_ this flag
+      "-Wl,--remap-inputs=libcommon.a=/dev/null",
+      # TODO BL: Let's pray that this works
+      # "-Wl,--remap-inputs=/usr/lib/x86_64-linux-gnu/libbsd.so.0.11.7=/dev/null",
+      # "-Wl,--remap-inputs=/usr/lib/x86_64-linux-gnu/libbsd.so.0.11.7=/usr/lib/x86_64-linux-gnu/libbsd.so.0.12.1",
+      # "-Wl,--remap-inputs=/usr/lib/x86_64-linux-gnu/libbsd.so.0.11.7=/home/blorente/code/github.com/sonic-net/sonic-swss/libbsd.so.0.11.7",
+    ],
+)
+
 cc_test(
     name = "tests",
     srcs = [
@@ -104,33 +135,44 @@ cc_test(
     ] + ALL_TEST_HDRS,
     copts = COMMON_COPTS,
     linkopts = COMMON_LINKOPTS + [
+      # Ref: https://linux.die.net/man/1/ld
+      # "-Wl,--exclude-libs=libcommon.a",
+      # TODO BL: This will ignore all entries of libcommon.a that happen _after_ this flag
+      # "-Wl,--remap-inputs=libcommon.a=/dev/null",
       # TODO BL: Let's pray that this works
       # "-Wl,--remap-inputs=/usr/lib/x86_64-linux-gnu/libbsd.so.0.11.7=/dev/null",
       # "-Wl,--remap-inputs=/usr/lib/x86_64-linux-gnu/libbsd.so.0.11.7=/usr/lib/x86_64-linux-gnu/libbsd.so.0.12.1",
-      "-Wl,--remap-inputs=/usr/lib/x86_64-linux-gnu/libbsd.so.0.11.7=/home/blorente/code/github.com/sonic-net/sonic-swss/libbsd.so.0.11.7",
+      # "-Wl,--remap-inputs=/usr/lib/x86_64-linux-gnu/libbsd.so.0.11.7=/home/blorente/code/github.com/sonic-net/sonic-swss/libbsd.so.0.11.7",
+      "-lboost_serialization",
+      # TODO BL: obviously absolute paths are bad.
+      "-L/home/blorente/.cache/bazel/_bazel_blorente/18e6b334ca347a689d90222d36b083c7/sandbox/linux-sandbox/28/execroot/_main/bazel-out/k8-fastbuild/bin/external/rules_distroless++apt+bookworm_libboost-serialization1.74-dev-amd64_1.74.0-ds1-21/usr/lib/x86_64-linux-gnu/",
+      "-Wl,-rpath-link=/home/blorente/.cache/bazel/_bazel_blorente/18e6b334ca347a689d90222d36b083c7/sandbox/linux-sandbox/28/execroot/_main/bazel-out/k8-fastbuild/bin/external/rules_distroless++apt+bookworm_libboost-serialization1.74-dev-amd64_1.74.0-ds1-21/usr/lib/x86_64-linux-gnu",
+    ],
+    dynamic_deps = [
+      # "//bazel/swsscommon:swsscommon_shared",
+      "@sonic_swss_common//:libswsscommon_archive",
     ],
     deps = [
-        ":fake_response_publisher_lib",
-        "//cfgmgr:cfgmgr_base_lib",
-        "//lib:lib_utils",
-        "//orchagent:orchagent_test_lib",
-        "//warmrestart:warmrestartassist_lib",
-        "@com_google_googletest//:gtest",
-        "@com_google_googletest//:gtest_main",
-        "//bazel/hiredis:hiredis",
-        "//bazel/libnl3:libnl-genl-3",
-        "//bazel/libnl3:libnl-route-3",
-        "//bazel/libnl3:libnl3",
-        "//bazel/saimetadata:saimeta",
-        "//bazel/saimetadata:saimetadata",
-        "//bazel/saivs:saivs",
-        "//bazel/swsscommon:swsscommon",
-        # "//bazel/swsscommon:swsscommon_shared",
-        "//bazel/zmq:zmq",
-        # TODO BL: just to test
-        # "@bookworm//libboost-dev:libboost",
-        # "@bookworm//libboost-serialization-dev:libboost-serialization",
+      # "tests_deps_wrapper",
+       ":fake_response_publisher_lib",
+       "//cfgmgr:cfgmgr_base_lib",
+       "//lib:lib_utils",
+       "//orchagent:orchagent_test_lib",
+       "//warmrestart:warmrestartassist_lib",
+       "@com_google_googletest//:gtest",
+       "@com_google_googletest//:gtest_main",
+       "//bazel/hiredis:hiredis",
+       "//bazel/libnl3:libnl-genl-3",
+       "//bazel/libnl3:libnl-route-3",
+       "//bazel/libnl3:libnl3",
+       "//bazel/saimetadata:saimeta",
+       "//bazel/saimetadata:saimetadata",
+       "//bazel/saivs:saivs",
+       "//bazel/zmq:zmq",
 
+       # "@sonic_swss_common//:boost",
+       "@bookworm//libboost-serialization-dev:libboost-serialization",
+       "@@rules_distroless++apt+bookworm_libboost-serialization1.74-dev-amd64_1.74.0-ds1-21//:libboost-serialization1.74_wodeps",
     ],
     # linkstatic = False,
     # linkshared = True,
