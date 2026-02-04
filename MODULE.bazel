@@ -64,6 +64,7 @@ apt.sources_list(
     suites = [
         "bookworm",
         "bookworm-updates",
+        "sid", # TODO BL: not sure what sid is, but it's where libyang is. We may not need this if we're using libyang2
     ],
     uris = ["https://snapshot.debian.org/archive/debian/20251001T023456Z"],
 )
@@ -87,6 +88,8 @@ apt.install(
         "libteamdctl0",
         "libteam-dev",
 
+        "libyang2-dev",
+
         # TODO BL: Just to test the archive
         "libboost-dev",
         "libboost-serialization-dev",
@@ -95,6 +98,7 @@ apt.install(
     suites = [
         "bookworm",
         "bookworm-updates",
+        "sid",
     ],
 )
 use_repo(apt, "bookworm")

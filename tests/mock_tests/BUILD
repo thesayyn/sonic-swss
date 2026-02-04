@@ -137,16 +137,23 @@ cc_test(
     linkopts = COMMON_LINKOPTS + [
       # Ref: https://linux.die.net/man/1/ld
       # "-Wl,--exclude-libs=libcommon.a",
-      # TODO BL: This will ignore all entries of libcommon.a that happen _after_ this flag
-      # "-Wl,--remap-inputs=libcommon.a=/dev/null",
       # TODO BL: Let's pray that this works
+      "-Wl,--remap-inputs=/usr/lib/x86_64-linux-gnu/libbsd.so.*=/dev/null",
       # "-Wl,--remap-inputs=/usr/lib/x86_64-linux-gnu/libbsd.so.0.11.7=/dev/null",
       # "-Wl,--remap-inputs=/usr/lib/x86_64-linux-gnu/libbsd.so.0.11.7=/usr/lib/x86_64-linux-gnu/libbsd.so.0.12.1",
       # "-Wl,--remap-inputs=/usr/lib/x86_64-linux-gnu/libbsd.so.0.11.7=/home/blorente/code/github.com/sonic-net/sonic-swss/libbsd.so.0.11.7",
       "-lboost_serialization",
       # TODO BL: obviously absolute paths are bad.
-      "-L/home/blorente/.cache/bazel/_bazel_blorente/18e6b334ca347a689d90222d36b083c7/sandbox/linux-sandbox/28/execroot/_main/bazel-out/k8-fastbuild/bin/external/rules_distroless++apt+bookworm_libboost-serialization1.74-dev-amd64_1.74.0-ds1-21/usr/lib/x86_64-linux-gnu/",
-      "-Wl,-rpath-link=/home/blorente/.cache/bazel/_bazel_blorente/18e6b334ca347a689d90222d36b083c7/sandbox/linux-sandbox/28/execroot/_main/bazel-out/k8-fastbuild/bin/external/rules_distroless++apt+bookworm_libboost-serialization1.74-dev-amd64_1.74.0-ds1-21/usr/lib/x86_64-linux-gnu",
+      "-Lbazel-out/k8-fastbuild/bin/external/rules_distroless++apt+bookworm_libboost-serialization1.74-dev-amd64_1.74.0-ds1-21/usr/lib/x86_64-linux-gnu/",
+      "-Wl,-rpath-link=bazel-out/k8-fastbuild/bin/external/rules_distroless++apt+bookworm_libboost-serialization1.74-dev-amd64_1.74.0-ds1-21/usr/lib/x86_64-linux-gnu",
+
+      # TODO BL: these are also bad
+      "-Lbazel-out/k8-fastbuild/bin/external/rules_distroless++apt+bookworm_libboost-serialization1.74.0-amd64_1.74.0-ds1-21/usr/lib/x86_64-linux-gnu/",
+      "-Wl,-rpath-link=bazel-out/k8-fastbuild/bin/external/rules_distroless++apt+bookworm_libboost-serialization1.74.0-amd64_1.74.0-ds1-21/usr/lib/x86_64-linux-gnu/",
+
+      # TODO BL: These are also bad, and they may even work
+      "-Lbazel-out/k8-fastbuild/bin/external/rules_distroless++apt+bookworm_libboost-serialization1.74-dev-amd64_1.74.0-ds1-21/usr/lib/x86_64-linux-gnu/",
+      "-Wl,-rpath-link=bazel-out/k8-fastbuild/bin/external/rules_distroless++apt+bookworm_libboost-serialization1.74-dev-amd64_1.74.0-ds1-21/usr/lib/x86_64-linux-gnu",
     ],
     dynamic_deps = [
       # "//bazel/swsscommon:swsscommon_shared",
@@ -164,16 +171,26 @@ cc_test(
        "//bazel/hiredis:hiredis",
        "//bazel/libnl3:libnl-genl-3",
        "//bazel/libnl3:libnl-route-3",
+       "//bazel/libnl3:libnl-nf-3",
        "//bazel/libnl3:libnl3",
        "//bazel/saimetadata:saimeta",
        "//bazel/saimetadata:saimetadata",
        "//bazel/saivs:saivs",
        "//bazel/zmq:zmq",
 
+       # TODO BL: new deps
+       "@bookworm//libyang2-dev:libyang2",
+
        # "@sonic_swss_common//:boost",
-       "@bookworm//libboost-serialization-dev:libboost-serialization",
+       # "@bookworm//libboost-serialization-dev:libboost-serialization",
+       # "@bookworm//libboost-serialization1.74-dev:libboost-serialization1.74",
        "@@rules_distroless++apt+bookworm_libboost-serialization1.74-dev-amd64_1.74.0-ds1-21//:libboost-serialization1.74_wodeps",
     ],
+    additional_linker_inputs = [
+      "@@rules_distroless++apt+bookworm_libboost-serialization1.74-dev-amd64_1.74.0-ds1-21//:usr/lib/x86_64-linux-gnu/libboost_serialization.so",
+      "@@rules_distroless++apt+bookworm_libboost-serialization1.74-dev-amd64_1.74.0-ds1-21//:usr/lib/x86_64-linux-gnu/libboost_wserialization.so",
+    ]
+
     # linkstatic = False,
     # linkshared = True,
 )
