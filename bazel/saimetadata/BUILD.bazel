@@ -19,7 +19,7 @@ package(default_visibility = ["//visibility:public"])
 #
 alias(
     name = "saimetadata",
-    actual = "@sonic_sairedis//meta:saimetadata",
+    actual = "@sonic_sairedis//meta:libsaimetadata",
     # TODO BL: Fix
     # deps = [
     #     ":saimetadata_headers",
@@ -28,7 +28,7 @@ alias(
 
 alias(
   name = "saimeta",
-  actual = "@sonic_sairedis//meta:saimeta",
+  actual = "@sonic_sairedis//meta:libsaimeta",
 )
 # cc_import(
 #     name = "saimeta",

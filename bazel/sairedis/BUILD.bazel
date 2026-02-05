@@ -4,7 +4,7 @@ filegroup(name = 'empty', srcs = [])
 
 alias(
     name = "sairedis",
-    actual = "@sonic_sairedis//lib:sairedis",
+    actual = "@sonic_sairedis//lib:libsairedis",
     # TODO BL: Fix
     # deps = [
     #     ":sairedis_headers",
