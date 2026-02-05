@@ -144,13 +144,6 @@ cc_test(
       # "-Wl,--remap-inputs=/usr/lib/x86_64-linux-gnu/libbsd.so.0.11.7=/home/blorente/code/github.com/sonic-net/sonic-swss/libbsd.so.0.11.7",
       "-lboost_serialization",
       # TODO BL: obviously absolute paths are bad.
-      "-Lbazel-out/k8-fastbuild/bin/external/rules_distroless++apt+bookworm_libboost-serialization1.74-dev-amd64_1.74.0-ds1-21/usr/lib/x86_64-linux-gnu/",
-      "-Wl,-rpath-link=bazel-out/k8-fastbuild/bin/external/rules_distroless++apt+bookworm_libboost-serialization1.74-dev-amd64_1.74.0-ds1-21/usr/lib/x86_64-linux-gnu",
-
-      # TODO BL: these are also bad
-      "-Lbazel-out/k8-fastbuild/bin/external/rules_distroless++apt+bookworm_libboost-serialization1.74.0-amd64_1.74.0-ds1-21/usr/lib/x86_64-linux-gnu/",
-      "-Wl,-rpath-link=bazel-out/k8-fastbuild/bin/external/rules_distroless++apt+bookworm_libboost-serialization1.74.0-amd64_1.74.0-ds1-21/usr/lib/x86_64-linux-gnu/",
-
       # TODO BL: These are also bad, and they may even work
       "-Lbazel-out/k8-fastbuild/bin/external/rules_distroless++apt+bookworm_libboost-serialization1.74-dev-amd64_1.74.0-ds1-21/usr/lib/x86_64-linux-gnu/",
       "-Wl,-rpath-link=bazel-out/k8-fastbuild/bin/external/rules_distroless++apt+bookworm_libboost-serialization1.74-dev-amd64_1.74.0-ds1-21/usr/lib/x86_64-linux-gnu",
@@ -158,7 +151,12 @@ cc_test(
       # TODO BL: This can't be the right way to do this,
       # but it's picking up libnl-nf-3 from the import which is just `.so`, and not the 
       # actual _so_libs, which is .so.200
-      # "-Wl,-rpath=$ORIGIN/../../_solib_k8/_U_A_Arules_Udistroless++apt+bookworm_Ulibnl-nf-3-200-amd64_U3.7.0-0.2-b1_S_S_C_Uso_Ulibs___Uexternal_Srules_Udistroless++apt+bookworm_Ulibnl-nf-3-200-amd64_U3.7.0-0.2-b1_Susr_Slib_Sx86_U64-linux-gnu/",
+      "-Wl,-rpath=$ORIGIN/../../_solib_k8/_U_A_Arules_Udistroless++apt+bookworm_Ulibnl-nf-3-200-amd64_U3.7.0-0.2-b1_S_S_C_Uso_Ulibs___Uexternal_Srules_Udistroless++apt+bookworm_Ulibnl-nf-3-200-amd64_U3.7.0-0.2-b1_Susr_Slib_Sx86_U64-linux-gnu/",
+      # "-Wl,-rpath=$ORIGIN/../../_solib_k8/_U_A_Arules_Udistroless++apt+bookworm_Ulibhiredis0.14-amd64_U0.14.1-3_S_S_C_Uso_Ulibs___Uexternal_Srules_Udistroless++apt+bookworm_Ulibhiredis0.14-amd64_U0.14.1-3_Susr_Slib_Sx86_U64-linux-gnu",
+      # "-Wl,-rpath=$ORIGIN/../../_solib_k8/_U_A_Arules_Udistroless++apt+bookworm_Ulibyang2-amd64_U2.1.30-2_S_S_C_Uso_Ulibs___Uexternal_Srules_Udistroless++apt+bookworm_Ulibyang2-amd64_U2.1.30-2_Susr_Slib_Sx86_U64-linux-gnu",
+      # "-Wl,-rpath=$ORIGIN/../../_solib_k8/_U_A_Arules_Udistroless++apt+bookworm_Ulibzmq5-amd64_U4.3.4-6_S_S_C_Uso_Ulibs___Uexternal_Srules_Udistroless++apt+bookworm_Ulibzmq5-amd64_U4.3.4-6_Susr_Slib_Sx86_U64-linux-gnu",    
+      # "-Wl,-rpath=$ORIGIN/../../_solib_k8/_U_A_Arules_Udistroless++apt+bookworm_Ulibzmq5-amd64_U4.3.4-6_S_S_C_Uso_Ulibs___Uexternal_Srules_Udistroless++apt+bookworm_Ulibzmq5-amd64_U4.3.4-6_Susr_Slib_Sx86_U64-linux-gnu",    
+      # "-Wl,-rpath=$ORIGIN/../../_solib_k8/_U_A_Arules_Udistroless++apt+bookworm_Ulibnorm1-amd64_U1.5.9-dfsg-2_S_S_C_Uso_Ulibs___Uexternal_Srules_Udistroless++apt+bookworm_Ulibnorm1-amd64_U1.5.9-dfsg-2_Susr_Slib_Sx86_U64-linux-gnu",
     ],
     dynamic_deps = [
       # "//bazel/swsscommon:swsscommon_shared",
@@ -184,7 +182,14 @@ cc_test(
        "//bazel/zmq:zmq",
 
        # TODO BL: Figure out why we must depend on these wodeps directly and the -rpaths are not baked into the binary
+       "@@rules_distroless++apt+bookworm_libnl-3-200-amd64_3.7.0-0.2-b1//:libnl-3-200_wodeps",
+       "@@rules_distroless++apt+bookworm_libnl-nf-3-200-amd64_3.7.0-0.2-b1//:libnl-nf-3-200_wodeps",
+       "@@rules_distroless++apt+bookworm_libnl-3-dev-amd64_3.7.0-0.2-b1//:libnl-3_wodeps",
+       "@@rules_distroless++apt+bookworm_libnl-genl-3-dev-amd64_3.7.0-0.2-b1//:libnl-genl-3_wodeps",
        "@@rules_distroless++apt+bookworm_libnl-nf-3-dev-amd64_3.7.0-0.2-b1//:libnl-nf-3_wodeps",
+       "@@rules_distroless++apt+bookworm_libnl-route-3-dev-amd64_3.7.0-0.2-b1//:libnl-route-3_wodeps",
+       "@@rules_distroless++apt+bookworm_libhiredis-dev-amd64_0.14.1-3//:libhiredis_wodeps",
+       "@@rules_distroless++apt+bookworm_libhiredis0.14-amd64_0.14.1-3//:libhiredis0.14_wodeps",
 
        # TODO BL: new deps
        "@bookworm//libyang2-dev:libyang2",
@@ -199,9 +204,6 @@ cc_test(
       "@@rules_distroless++apt+bookworm_libboost-serialization1.74-dev-amd64_1.74.0-ds1-21//:usr/lib/x86_64-linux-gnu/libboost_serialization.so",
       "@@rules_distroless++apt+bookworm_libboost-serialization1.74-dev-amd64_1.74.0-ds1-21//:usr/lib/x86_64-linux-gnu/libboost_wserialization.so",
     ]
-
-    # linkstatic = False,
-    # linkshared = True,
 )
 
 # only works with --config=portsyncd_tests_opts

@@ -177,6 +177,8 @@ pkg_tar(
     name = "debian-data",
     srcs = [":all-data"],
     extension = "tar.gz",
+    # Need to be visible from sonic-buildimage, to add this tar as a layer
+    visibility = ["//visibility:public"],
 )
 
 pkg_tar(
