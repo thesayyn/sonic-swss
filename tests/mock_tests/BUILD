@@ -80,18 +80,10 @@ cc_library(
           "//bazel/saivs:saivs",
           "//bazel/zmq:zmq",
     ],
-    linkopts = COMMON_LINKOPTS + [
-      # Ref: https://linux.die.net/man/1/ld
-      # "-Wl,--exclude-libs=libcommon.a",
-      # TODO BL: This will ignore all entries of libcommon.a that happen _after_ this flag
-      "-Wl,--remap-inputs=libcommon.a=/dev/null",
-      # TODO BL: Let's pray that this works
-      # "-Wl,--remap-inputs=/usr/lib/x86_64-linux-gnu/libbsd.so.0.11.7=/dev/null",
-      # "-Wl,--remap-inputs=/usr/lib/x86_64-linux-gnu/libbsd.so.0.11.7=/usr/lib/x86_64-linux-gnu/libbsd.so.0.12.1",
-      # "-Wl,--remap-inputs=/usr/lib/x86_64-linux-gnu/libbsd.so.0.11.7=/home/blorente/code/github.com/sonic-net/sonic-swss/libbsd.so.0.11.7",
-    ],
+    linkopts = COMMON_LINKOPTS,
 )
 
+# TODO BL: This target is known to be broken, we're working on a fix
 cc_test(
     name = "tests",
     srcs = [
