@@ -1,12 +1,10 @@
 package(default_visibility = ["//visibility:public"])
 
-# cc_import(
 alias(
     name = "libteam",
     actual = "@bookworm//libteam-dev:libteam",
 )
 
-# cc_import(
 alias(
     name = "libteamdctl",
     # TODO BL: Either unify with the above or figure out whant's wrong.

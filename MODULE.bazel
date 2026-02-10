@@ -52,12 +52,11 @@ bazel_dep(name = "rules_distroless", version = "0.6.1", repo_name = "rules_deb")
 # )
 local_path_override(
   module_name = "rules_distroless",
-  path = "../../bazel-contrib/rules_distroless",
+  path = "../rules_distroless",
 )
 
 apt = use_extension("@rules_deb//apt:extensions.bzl", "apt")
 
-# TODO BL: Copypasted from https://github.com/thesayyn/sonic-buildimage/blob/9c66e0cb376b616ced4e2f5b22e383260e811969/dockers/docker-base-bookworm/base_bookworm.MODULE.bazel#L2C1-L16C1
 apt.sources_list(
     architectures = ["amd64"],
     components = ["main"],
@@ -89,7 +88,7 @@ apt.install(
 
         "libyang2-dev",
 
-        # TODO BL: Just to test the archive
+        # TODO: These are just to debug //tests/mock_tests:tests, we should remove them once it works.
         "libboost-dev",
         "libboost-serialization-dev",
         "libboost-serialization1.74-dev",
@@ -102,26 +101,15 @@ apt.install(
 use_repo(apt, "bookworm")
 
 bazel_dep(name = "sonic-swss-common", version = "0.0.0", repo_name = "sonic_swss_common")
-
-# git_override(
-#     module_name = "sonic-swss-common",
-#     commit = "fb068d7dd7f6f4f63c48d85ba9135b3b78d8d804",  # Tip of master
-#     remote = "https://github.com/thesayyn/sonic-swss-common",
-# )
 local_path_override(
     module_name = "sonic-swss-common",
-    path = "../../sonic-net/sonic-swss-common",
+    path = "../sonic-swss-common",
 )
 
 bazel_dep(name = "sonic-build-infra", version = "0.0.0")
-# git_override(
-#     module_name = "sonic-build-infra",
-#     commit = "01d897a9e7b7aea219a389ccd5112233f26576b8",  # Tip of master
-#     remote = "https://github.com/thesayyn/sonic-build-infra",
-# )
 local_path_override(
     module_name = "sonic-build-infra",
-    path = "../../sonic-net/sonic-build-infra",
+    path = "../sonic-build-infra",
 )
 
 register_toolchains("@sonic-build-infra//toolchains/gcc:host_gcc_toolchain")
@@ -129,17 +117,17 @@ register_toolchains("@sonic-build-infra//toolchains/gcc:host_gcc_toolchain")
 bazel_dep(name = "sonic-sairedis", version = "0.0.0", repo_name = "sonic_sairedis")
 local_path_override(
     module_name = "sonic-sairedis",
-    path = "../../sonic-net/sonic-sairedis",
+    path = "../sonic-sairedis",
 )
 
 bazel_dep(name = "sai", version = "0.0.0")
 local_path_override(
     module_name = "sai",
-    path = "../../sonic-net/sonic-sairedis/SAI",
+    path = "../sonic-sairedis/SAI",
 )
 
 bazel_dep(name = "sonic-dash-api", version = "0.0.0", repo_name = "sonic_dash_api")
 local_path_override(
     module_name = "sonic-dash-api",
-    path = "../../sonic-net/sonic-dash-api",
+    path = "../sonic-dash-api",
 )

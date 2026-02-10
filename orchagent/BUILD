@@ -427,8 +427,6 @@ cc_binary(
     name = "routeresync",
     srcs = ["routeresync.cpp"],
     copts = DEBUG_COPTS,
-    # TODO BL: I don't think we need these linkopts, we already depend on them
-    # linkopts = ["-lhiredis -lswsscommon"],
     local_defines = DEFAULT_DEFINES,
     deps = [
         "//bazel/hiredis:hiredis",
@@ -561,8 +559,6 @@ cc_library(
         "p4orch/route_manager.cpp",
         "p4orch/router_interface_manager.cpp",
         "p4orch/tables_definition_manager.cpp",
-        # TODO BL: This file doesn't exist
-        # "p4orch/tests/mock_component_state_helper.h",
         "p4orch/tests/mock_response_publisher.h",
         "p4orch/tests/mock_sai_switch.cpp",
         "p4orch/tests/mock_sai_switch.h",

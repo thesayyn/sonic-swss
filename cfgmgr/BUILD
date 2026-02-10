@@ -20,7 +20,6 @@ cc_library(
 
 filegroup(
     name = "confg_mgr_data",
-    # TODO BL: This probably wasn't meant to allow empty
     srcs = glob(
         ["*.json"],
         allow_empty = True,
@@ -186,22 +185,6 @@ cc_binary(
         "//orchagent:orchagent_lib_impl",
     ],
 )
-
-# TODO BL: The source files don't exist
-# cc_binary(
-#     name = "switchmgrd",
-#     srcs = [
-#         "switchmgr.cpp",
-#         "switchmgr.h",
-#         "switchmgrd.cpp",
-#     ],
-#     copts = DEFAULT_COPTS,
-#     linkopts = DEFAULT_LINKOPTS,
-#     deps = [
-#         "//cfgmgr:shellcmd",
-#         "//orchagent:orchagent_lib_impl",
-#     ],
-# )
 
 cc_binary(
     name = "fabricmgrd",

@@ -11,7 +11,6 @@ cc_test(
         "quoted_ut.cpp",
         "request_parser_ut.cpp",
         "swssnet_ut.cpp",
-        # TODO BL: Surely we need to add more tests here, for all the python files
     ],
     copts = add_debug_to_copts(),
     linkopts = [

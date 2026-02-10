@@ -5,14 +5,3 @@ alias(
   actual = "@sonic_sairedis//vslib:saivs",
 )
 
-# TODO BL: Give it a once-over
-# cc_library(
-#     name = "saivs_headers",
-#     hdrs = glob([
-#         "bazel/saivs/saivs_hdrs/sai*.h",
-#     ], exclude = ["bazel/saimetadata/saimetadata_hdrs/sairedis.h"]),
-#     includes = [
-#         "bazel/saivs/saivs_hdrs",
-#     ],
-#     strip_include_prefix = "bazel/saivs/saivs_hdrs",
-# )

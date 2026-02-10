@@ -1,12 +1,6 @@
 package(default_visibility = ["//visibility:public"])
 
 alias(
-    name = "hiredis_headers",
-    # TODO BL:  Not sure this is the right thing to do, but we can mess around with the packages when thebuild fails
-    actual = "@bookworm//libhiredis-dev:libhiredis",
-)
-
-alias(
     name = "hiredis",
     actual = "@bookworm//libhiredis-dev:libhiredis",
 )
