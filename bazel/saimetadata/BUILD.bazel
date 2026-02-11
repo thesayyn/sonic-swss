@@ -1,0 +1,11 @@
+package(default_visibility = ["//visibility:public"])
+
+alias(
+    name = "saimetadata",
+    actual = "@sonic_sairedis//meta:libsaimetadata",
+)
+
+alias(
+  name = "saimeta",
+  actual = "@sonic_sairedis//meta:libsaimeta",
+)

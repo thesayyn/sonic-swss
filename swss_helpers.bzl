@@ -1,6 +1,10 @@
 """Helpers for building SWSS."""
 
 load("@rules_pkg//pkg:mappings.bzl", "pkg_attributes", "pkg_files")
+load("@rules_cc//cc:find_cc_toolchain.bzl", "CC_TOOLCHAIN_ATTRS", "find_cpp_toolchain", "use_cc_toolchain")
+load("@rules_cc//cc/common:cc_common.bzl", "cc_common")
+load("@rules_cc//cc:action_names.bzl", "OBJ_COPY_ACTION_NAME")
+
 
 DebugInfo = provider(
     "debug symbols for binaries",
@@ -16,9 +20,20 @@ def _strip_binary_and_extract_debug_impl(ctx):
     stripped_binary_out = ctx.outputs.stripped_binary
     debug_symbols_out = ctx.outputs.debug_symbols
 
-    # todo: update bazel version to have a hermetic objcopy path
-    # objcopy_path = ctx.toolchains["@bazel_tools//tools/cpp:toolchain_type"].cc.objcopy_executable
-    objcopy_path = "/usr/bin/objcopy"
+    # We need rules_cc here because the gcc_toolchain from sonic-build-infra is rules_based,
+    # so we need all the provider magic from rules_cc.
+    cc_toolchain = find_cpp_toolchain(ctx)
+    feature_configuration = cc_common.configure_features(
+       ctx = ctx,
+       cc_toolchain = cc_toolchain,
+       requested_features = ctx.features,
+       unsupported_features = ctx.disabled_features,
+    )
+    objcopy_path = cc_common.get_tool_for_action(
+       feature_configuration = feature_configuration,
+       action_name = OBJ_COPY_ACTION_NAME,
+    )
+
     if not objcopy_path:
         fail("Could not find objcopy executable in C++ toolchain")
 
@@ -32,6 +47,7 @@ def _strip_binary_and_extract_debug_impl(ctx):
     input_files = depset(
         transitive = [
             depset([input_binary]),
+            cc_toolchain.all_files,
         ],
     )
 
@@ -105,6 +121,7 @@ strip_binary_and_extract_debug = rule(
         "debug_symbols": "%{name}.debug",  # File named <rule_name>.debug (e.g., "orchagent.debug")
     },
     doc = "Extracts compressed debug symbols to a .debug file, strips the binary, and adds a gnu_debuglink.",
+    fragments = ["cpp"],
 )
 
 def _create_stripped_binary_with_debug(name, target, **kwargs):

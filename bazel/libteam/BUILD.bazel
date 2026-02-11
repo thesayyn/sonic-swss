@@ -1,0 +1,13 @@
+package(default_visibility = ["//visibility:public"])
+
+alias(
+    name = "libteam",
+    actual = "@bookworm//libteam-dev:libteam",
+)
+
+alias(
+    name = "libteamdctl",
+    # TODO BL: Either unify with the above or figure out whant's wrong.
+    # This is the target exporting teamdctl.h which we need.
+    actual = "@bookworm//libteam-dev:libteam",
+)

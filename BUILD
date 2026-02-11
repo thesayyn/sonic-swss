@@ -173,6 +173,8 @@ pkg_tar(
     name = "debian-data",
     srcs = [":all-data"],
     extension = "tar.gz",
+    # Need to be visible from sonic-buildimage, to add this tar as a layer
+    visibility = ["//visibility:public"],
 )
 
 pkg_tar(
@@ -235,4 +237,12 @@ pkg_deb(
     # Currently uses static naming
     package_file_name = "swss-dbg_1.0.0_amd64.deb",
     version = "1.0.0",
+)
+
+platform(
+    name = "linux_x86_64",
+    constraint_values = [
+        "@platforms//os:linux",
+        "@platforms//cpu:x86_64",
+    ],
 )

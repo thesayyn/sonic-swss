@@ -17,8 +17,8 @@ cc_binary(
     deps = [
         "//cfgmgr:shellcmd",
         "//lib:lib_utils",
-        "@local_libnl3//:libnl-route-3",
-        "@local_libnl3//:libnl3",
-        "@local_swsscommon//:swsscommon",
+        "//bazel/libnl3:libnl-route-3",
+        "//bazel/libnl3:libnl3",
+        "//bazel/swsscommon:swsscommon",
     ],
 )

@@ -5,8 +5,9 @@ package(default_visibility = ["//visibility:public"])
 cc_test(
     name = "tests",
     srcs = [
-        "blackhole_counters_ut.cpp",
-        "congestion_counters_ut.cpp",
+        # TODO BL: Files don't exist anymore
+        # "blackhole_counters_ut.cpp",
+        # "congestion_counters_ut.cpp",
         "quoted_ut.cpp",
         "request_parser_ut.cpp",
         "swssnet_ut.cpp",
@@ -22,9 +23,9 @@ cc_test(
         "//orchagent:request_parser_lib",
         "@com_google_googletest//:gtest",
         "@com_google_googletest//:gtest_main",
-        "@local_hiredis//:hiredis",
-        "@local_libnl3//:libnl-genl-3",
-        "@local_saimetadata//:saimeta",
-        "@local_swsscommon//:swsscommon",
+        "//bazel/hiredis:hiredis",
+        "//bazel/libnl3:libnl-genl-3",
+        "//bazel/saimetadata:saimeta",
+        "//bazel/swsscommon:swsscommon",
     ],
 )

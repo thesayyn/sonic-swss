@@ -230,14 +230,15 @@ cc_library(
     defines = [
         "DRAIN_MMU_WHEN_APPLYING_BUFFER_CONFIG",
     ],
-    linkopts = ["-lpthread", "-lprotobuf"],
+    linkopts = ["-lpthread"],
     local_defines = DEFAULT_DEFINES,
     deps = [
-        "@local_saimetadata//:saimeta",
-        "@local_saimetadata//:saimetadata",
-        "@local_swsscommon//:swsscommon",
-        "@local_zmq//:zmq",
-        "@local_dashapi//:dashapi",
+        "//bazel/saimetadata:saimeta",
+        "//bazel/saimetadata:saimetadata",
+        "//bazel/swsscommon:swsscommon",
+        "//bazel/zmq:zmq",
+        "//bazel/dashapi:dashapi",
+        "//bazel/dashapi:dashapi_proto",
     ],
 )
 
@@ -251,20 +252,21 @@ cc_library(
     copts = [
         "-fno-stack-protector",
     ] + DEBUG_COPTS,
-    linkopts = ["-lpthread", "-lprotobuf"],
+    linkopts = ["-lpthread"],
     local_defines = DEFAULT_DEFINES,
     deps = [
-        "@local_hiredis//:hiredis",
-        "@local_libnl3//:libnl-genl-3",
-        "@local_libnl3//:libnl-nf-3",
-        "@local_libnl3//:libnl-route-3",
-        "@local_libnl3//:libnl3",
-        "@local_saimetadata//:saimeta",
-        "@local_saimetadata//:saimetadata",
-        "@local_sairedis//:sairedis",
-        "@local_swsscommon//:swsscommon",
-        "@local_zmq//:zmq",
-        "@local_dashapi//:dashapi",
+        "//bazel/hiredis:hiredis",
+        "//bazel/libnl3:libnl-genl-3",
+        "//bazel/libnl3:libnl-nf-3",
+        "//bazel/libnl3:libnl-route-3",
+        "//bazel/libnl3:libnl3",
+        "//bazel/saimetadata:saimeta",
+        "//bazel/saimetadata:saimetadata",
+        "//bazel/sairedis:sairedis",
+        "//bazel/swsscommon:swsscommon",
+        "//bazel/zmq:zmq",
+        "//bazel/dashapi:dashapi",
+        "//bazel/dashapi:dashapi_proto",
     ],
 )
 
@@ -371,7 +373,7 @@ cc_test(
     data = [
         "//cfgmgr:confg_mgr_data",
     ],
-    linkopts = ["-lpthread", "-lprotobuf"] + select({
+    linkopts = ["-lpthread"] + select({
         "//:asan": ["-lasan"],
         "//conditions:default": [],
     }),
@@ -381,13 +383,13 @@ cc_test(
         "//tests/mock_tests:fake_response_publisher_lib",
         "@com_google_googletest//:gtest",
         "@com_google_googletest//:gtest_main",
-        "@local_hiredis//:hiredis",
-        "@local_saimetadata//:saimeta",
-        "@local_saimetadata//:saimetadata",
-        "@local_sairedis//:sairedis",
-        "@local_swsscommon//:swsscommon",
-        "@local_zmq//:zmq",
-        "@local_dashapi//:dashapi",
+        "//bazel/hiredis:hiredis",
+        "//bazel/saimetadata:saimeta",
+        "//bazel/saimetadata:saimetadata",
+        "//bazel/sairedis:sairedis",
+        "//bazel/swsscommon:swsscommon",
+        "//bazel/zmq:zmq",
+        "//bazel/dashapi:dashapi",
     ] + select({
         "//:asan": [
             "//lib:asan",
@@ -425,11 +427,10 @@ cc_binary(
     name = "routeresync",
     srcs = ["routeresync.cpp"],
     copts = DEBUG_COPTS,
-    linkopts = ["-lhiredis -lswsscommon"],
     local_defines = DEFAULT_DEFINES,
     deps = [
-        "@local_hiredis//:hiredis",
-        "@local_swsscommon//:swsscommon",
+        "//bazel/hiredis:hiredis",
+        "//bazel/swsscommon:swsscommon",
     ],
 )
 
@@ -440,8 +441,8 @@ cc_binary(
     linkopts = ["-lpthread"],
     local_defines = DEFAULT_DEFINES,
     deps = [
-        "@local_hiredis//:hiredis",
-        "@local_swsscommon//:swsscommon",
+        "//bazel/hiredis:hiredis",
+        "//bazel/swsscommon:swsscommon",
     ],
 )
 
@@ -461,15 +462,15 @@ cc_library(
         "//conditions:default": ["-g -DNDEBUG"],
     }),
     deps = [
-        "@local_hiredis//:hiredis",
-        "@local_libnl3//:libnl-genl-3",
-        "@local_libnl3//:libnl-route-3",
-        "@local_libnl3//:libnl3",
-        "@local_saimetadata//:saimeta",
-        "@local_saimetadata//:saimetadata",
-        "@local_saivs//:saivs",
-        "@local_swsscommon//:swsscommon",
-        "@local_zmq//:zmq",
+        "//bazel/hiredis:hiredis",
+        "//bazel/libnl3:libnl-genl-3",
+        "//bazel/libnl3:libnl-route-3",
+        "//bazel/libnl3:libnl3",
+        "//bazel/saimetadata:saimeta",
+        "//bazel/saimetadata:saimetadata",
+        "//bazel/saivs:saivs",
+        "//bazel/swsscommon:swsscommon",
+        "//bazel/zmq:zmq",
         "//lib:lib_utils",
     ],
 )
@@ -558,7 +559,6 @@ cc_library(
         "p4orch/route_manager.cpp",
         "p4orch/router_interface_manager.cpp",
         "p4orch/tables_definition_manager.cpp",
-        "p4orch/tests/mock_component_state_helper.h",
         "p4orch/tests/mock_response_publisher.h",
         "p4orch/tests/mock_sai_switch.cpp",
         "p4orch/tests/mock_sai_switch.h",

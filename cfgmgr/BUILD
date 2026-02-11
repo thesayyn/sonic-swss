@@ -14,13 +14,16 @@ cc_library(
     srcs = ["shellcmd.h"],
     hdrs = ["shellcmd.h"],
     deps = [
-        "@local_swsscommon//:swsscommon",
-    ]
+        "//bazel/swsscommon:swsscommon",
+    ],
 )
 
 filegroup(
     name = "confg_mgr_data",
-    srcs = glob(["*.json"]),
+    srcs = glob(
+        ["*.json"],
+        allow_empty = True,
+    ),
 )
 
 filegroup(
@@ -46,10 +49,10 @@ cc_binary(
 cc_binary(
     name = "teammgrd",
     srcs = [
+        "portmgr.h",
         "teammgr.cpp",
         "teammgr.h",
         "teammgrd.cpp",
-        "portmgr.h",
     ],
     copts = DEFAULT_COPTS,
     linkopts = DEFAULT_LINKOPTS,
@@ -155,10 +158,10 @@ cc_binary(
 cc_binary(
     name = "sflowmgrd",
     srcs = [
+        "portmgr.h",
         "sflowmgr.cpp",
         "sflowmgr.h",
         "sflowmgrd.cpp",
-        "portmgr.h",
     ],
     copts = DEFAULT_COPTS,
     linkopts = DEFAULT_LINKOPTS,
@@ -174,21 +177,6 @@ cc_binary(
         "coppmgr.cpp",
         "coppmgr.h",
         "coppmgrd.cpp",
-    ],
-    copts = DEFAULT_COPTS,
-    linkopts = DEFAULT_LINKOPTS,
-    deps = [
-        "//cfgmgr:shellcmd",
-        "//orchagent:orchagent_lib_impl",
-    ],
-)
-
-cc_binary(
-    name = "switchmgrd",
-    srcs = [
-        "switchmgr.cpp",
-        "switchmgr.h",
-        "switchmgrd.cpp",
     ],
     copts = DEFAULT_COPTS,
     linkopts = DEFAULT_LINKOPTS,
@@ -243,7 +231,6 @@ cc_binary(
     ],
 )
 
-
 # -------------- Base lib to use in external targets -------------
 
 cc_library(
@@ -267,12 +254,12 @@ cc_library(
         "//lib:lib_utils",
         "//orchagent:orchagent_lib",
         "//warmrestart:warmrestarthelper_lib",
-        "@local_hiredis//:hiredis",
-        "@local_libnl3//:libnl-genl-3",
-        "@local_libnl3//:libnl-route-3",
-        "@local_libnl3//:libnl3",
-        "@local_saivs//:saivs",
-        "@local_swsscommon//:swsscommon",
-        "@local_zmq//:zmq",
+        "//bazel/hiredis:hiredis",
+        "//bazel/libnl3:libnl-genl-3",
+        "//bazel/libnl3:libnl-route-3",
+        "//bazel/libnl3:libnl3",
+        "//bazel/saivs:saivs",
+        "//bazel/swsscommon:swsscommon",
+        "//bazel/zmq:zmq",
     ],
 )

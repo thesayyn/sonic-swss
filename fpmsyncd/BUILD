@@ -24,10 +24,10 @@ cc_library(
     ] + add_debug_to_copts(),
     deps = [
         "//warmrestart:warmrestarthelper_lib",
-        "@local_hiredis//:hiredis",
-        "@local_libnl3//:libnl-route-3",
-        "@local_libnl3//:libnl3",
-        "@local_swsscommon//:swsscommon",
+        "//bazel/hiredis:hiredis",
+        "//bazel/libnl3:libnl-route-3",
+        "//bazel/libnl3:libnl3",
+        "//bazel/swsscommon:swsscommon",
     ],
 )
 
@@ -43,9 +43,9 @@ cc_binary(
     ] + add_debug_to_copts(),
     deps = [
         "//warmrestart:warmrestarthelper_lib",
-        "@local_hiredis//:hiredis",
-        "@local_libnl3//:libnl-route-3",
-        "@local_libnl3//:libnl3",
-        "@local_swsscommon//:swsscommon",
+        "//bazel/hiredis:hiredis",
+        "//bazel/libnl3:libnl-route-3",
+        "//bazel/libnl3:libnl3",
+        "//bazel/swsscommon:swsscommon",
     ],
 )

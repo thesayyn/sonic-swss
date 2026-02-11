@@ -1,0 +1,22 @@
+package(default_visibility = ["//visibility:public"])
+
+alias(
+    name = "libnl3",
+    actual = "@bookworm//libnl-3-dev:libnl-3",
+)
+
+alias(
+    name = "libnl-route-3",
+    actual = "@bookworm//libnl-route-3-dev:libnl-route-3",
+)
+
+alias(
+    name = "libnl-genl-3",
+    actual = "@bookworm//libnl-genl-3-dev:libnl-genl-3",
+)
+
+alias(
+    name = "libnl-nf-3",
+    actual = "@bookworm//libnl-nf-3-dev:libnl-nf-3",
+)
+

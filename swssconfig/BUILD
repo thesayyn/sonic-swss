@@ -14,8 +14,8 @@ cc_binary(
     srcs = ["swssconfig.cpp"],
     copts = add_debug_to_copts(),
     deps = [
-        "@local_hiredis//:hiredis",
-        "@local_swsscommon//:swsscommon",
+        "//bazel/hiredis:hiredis",
+        "//bazel/swsscommon:swsscommon",
     ],
 )
 
@@ -24,7 +24,7 @@ cc_binary(
     srcs = ["swssplayer.cpp"],
     copts = add_debug_to_copts(),
     deps = [
-        "@local_hiredis//:hiredis",
-        "@local_swsscommon//:swsscommon",
+        "//bazel/hiredis:hiredis",
+        "//bazel/swsscommon:swsscommon",
     ],
 )

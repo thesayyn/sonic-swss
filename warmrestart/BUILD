@@ -8,9 +8,9 @@ cc_library(
         "-Wno-error=reorder",
     ],
     deps = [
-        "@local_libnl3//:libnl-route-3",
-        "@local_libnl3//:libnl3",
-        "@local_swsscommon//:swsscommon",
+        "//bazel/libnl3:libnl-route-3",
+        "//bazel/libnl3:libnl3",
+        "//bazel/swsscommon:swsscommon",
     ],
 )
 
@@ -22,8 +22,8 @@ cc_library(
         "-Wno-error=reorder",
     ],
     deps = [
-        "@local_libnl3//:libnl-route-3",
-        "@local_libnl3//:libnl3",
-        "@local_swsscommon//:swsscommon",
+        "//bazel/libnl3:libnl-route-3",
+        "//bazel/libnl3:libnl3",
+        "//bazel/swsscommon:swsscommon",
     ],
 )

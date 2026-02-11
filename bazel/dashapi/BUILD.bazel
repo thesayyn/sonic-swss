@@ -1,0 +1,12 @@
+package(default_visibility = ["//visibility:public"])
+
+alias(
+    name = "dashapi",
+    actual = "@sonic_dash_api//:libdashapi",
+)
+
+alias(
+    name = "dashapi_proto",
+    actual = "@sonic_dash_api//:dashapi_proto_headers",
+)
+

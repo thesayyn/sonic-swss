@@ -10,10 +10,10 @@ cc_binary(
     ]),
     copts = add_debug_to_copts(),
     deps = [
-        "@local_hiredis//:hiredis",
-        "@local_libnl3//:libnl-route-3",
-        "@local_libnl3//:libnl3",
-        "@local_libteam//:libteam",
-        "@local_swsscommon//:swsscommon",
+        "//bazel/hiredis:hiredis",
+        "//bazel/libnl3:libnl-route-3",
+        "//bazel/libnl3:libnl3",
+        "//bazel/libteam:libteam",
+        "//bazel/swsscommon:swsscommon",
     ],
 )
