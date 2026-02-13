@@ -1,6 +1,9 @@
-# TODO BL: New versions of protobuf and googletest depend on new versions of abseil which need C++17
-# build --cxxopt='-std=c++14' --host_cxxopt='-std=c++14'
-# build --cxxopt='-std=c++17' --host_cxxopt='-std=c++17'
+common --registry=https://raw.githubusercontent.com/aspect-build/bazel-central-registry/aspect_rules_py-v1.7.1
+common --registry=https://bcr.bazel.build
+
+# New versions of protobuf and googletest depend on new versions of abseil which need C++17
+# TODO BL: There are some warnings from the libc from bookworm, it seems that some symbols are deprecated in C++17
+build --cxxopt='-std=c++17' --host_cxxopt='-std=c++17'
 build --cxxopt='-Wall'
 build --cxxopt='-fPIC'
 build --cxxopt='-Wno-write-strings'
@@ -17,6 +20,7 @@ build --cxxopt='-Wdisabled-optimization'
 build --cxxopt='-Wextra'
 # issues with protobuf
 # build --cxxopt='-Wfloat-equal'
+# build --cxxopt='-Wmissing-field-initializers'
 build --cxxopt='-Wno-stringop-overflow'
 build --cxxopt='-Wno-error=suggest-attribute=format'
 build --cxxopt='-Wformat=2'
@@ -27,7 +31,6 @@ build --cxxopt='-Wimport'
 build --cxxopt='-Winit-self'
 build --cxxopt='-Winvalid-pch'
 build --cxxopt='-Wlong-long'
-build --cxxopt='-Wmissing-field-initializers'
 build --cxxopt='-Wmissing-format-attribute'
 build --cxxopt='-Wno-aggregate-return'
 build --cxxopt='-Wno-padded'
@@ -72,9 +75,3 @@ build:portsyncd_tests_opts --define=portsyncd_tests_opts=true
 build:portsyncd_tests_opts --linkopt='-Wl,-wrap,if_nameindex'
 build:portsyncd_tests_opts --linkopt='-Wl,-wrap,if_freenameindex'
 build --experimental_cc_shared_library
-
-common:blmigration --registry=https://raw.githubusercontent.com/aspect-build/bazel-central-registry/aspect_rules_py-v1.7.1
-common:blmigration --registry=https://bcr.bazel.build
-# common:blmigration --incompatible_enable_proto_toolchain_resolution
-# common:blmigration --@protobuf//bazel/toolchains:prefer_prebuilt_protoc=True
-common --config=blmigration

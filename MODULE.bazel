@@ -25,6 +25,7 @@ bazel_dep(name = "rules_pkg", version = "1.1.0")
 bazel_dep(name = "rules_foreign_cc", version = "0.11.1")
 bazel_dep(name = "aspect_rules_py", version = "1.7.1")
 bazel_dep(name = "rules_cc", version = "0.2.14")
+bazel_dep(name = "bazel_lib", version = "3.1.1")
 
 # Deps we need for starlarkified rulesets
 bazel_dep(name = "platforms", version = "1.0.0")
