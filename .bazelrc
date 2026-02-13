@@ -9,15 +9,11 @@ common --registry=https://bcr.bazel.build
 common --@sonic_swss_common//:alwayslink=False
 
 # New versions of protobuf and googletest depend on new versions of abseil which need C++17
-# TODO BL: There are some warnings from the libc from bookworm, it seems that some symbols are deprecated in C++17
 build --cxxopt='-std=c++17' --host_cxxopt='-std=c++17'
 build --cxxopt='-Wall'
 build --cxxopt='-fPIC'
 build --cxxopt='-Wno-write-strings'
-
-# TODO BL: Turning off -Werror until we get to a stable point
 # build --cxxopt='-Werror'
-
 build --cxxopt='-Wno-reorder'
 build --cxxopt='-Wcast-align'
 build --cxxopt='-Wcast-qual'
@@ -28,6 +24,12 @@ build --cxxopt='-Wextra'
 # issues with protobuf
 # build --cxxopt='-Wfloat-equal'
 # build --cxxopt='-Wmissing-field-initializers'
+build --cxxopt='-Wno-missing-field-initializers'
+build --cxxopt='-Wno-deprecated-declarations'
+# issues with absl
+build --cxxopt='-Wno-error=format-nonliteral'
+build --cxxopt='-Wno-format-nonliteral'
+
 build --cxxopt='-Wno-stringop-overflow'
 build --cxxopt='-Wno-error=suggest-attribute=format'
 build --cxxopt='-Wformat=2'
@@ -47,6 +49,7 @@ build --cxxopt='-Wpacked'
 build --cxxopt='-Wpointer-arith'
 # issues with googletest and stack-protector
 # build --cxxopt='-Wstack-protector'
+
 build --cxxopt='-Wstrict-aliasing=3'
 build --cxxopt='-Wswitch'
 build --cxxopt='-Wswitch-default'
