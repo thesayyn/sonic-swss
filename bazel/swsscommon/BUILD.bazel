@@ -5,44 +5,15 @@ package(default_visibility = ["//visibility:public"])
 alias(
   name = "swsscommon",
   actual = "@sonic_swss_common//:libswsscommon",
-  # actual = ":swsscommon_prebuilt",
-)
-
-alias(
-  name = "swsscommon_shared",
-  # TODO BL: restore if we decide not to go with prebuilt
-  # actual = "@sonic_swss_common//:libswsscommon_shared",
-  # actual = "@sonic_swss_common//:libswsscommon_consolidated.so",
-  # actual = ":swsscommon_prebuilt",
-  actual = "@sonic_swss_common//:libswsscommon_consolidated_alwayslink.so",
-)
-
-genrule(
-  name = "copy_libcommon",
-  srcs = ["@sonic_swss_common//:libswsscommon_consolidated.so"],
-  outs = ["libcommon.so"],
-  cmd = "cp $(SRCS) $(OUTS)",
 )
 
 cc_import(
   name = "swsscommon_so_prebuilt",
-  # shared_library = "//:libswsscommon_consolidated.so",
-  shared_library = "@sonic_swss_common//:libswsscommon_consolidated_alwayslink.so",
-  # shared_library = ":copy_libcommon",
+  shared_library = "@sonic_swss_common//:libswsscommon_consolidated.so",
 )
 
-copy_to_directory(
-  name = "swsscommon_headers",
-  srcs = ["@sonic_swss_common//:hdrs"],
-  include_external_repositories = ["*"],
+alias(
+  name = "swsscommon_shared",
+  actual = ":swsscommon_so_prebuilt",
 )
 
-cc_library(
-  name = "swsscommon_prebuilt",
-  deps = [
-    ":swsscommon_so_prebuilt",
-    "@sonic_swss_common//:common_deps",
-  ],
-  hdrs = [":swsscommon_headers"],
-  includes = ["swsscommon_headers/common"],
-)

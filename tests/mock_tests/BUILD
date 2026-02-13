@@ -43,6 +43,9 @@ cc_library(
     ],
     linkopts = COMMON_LINKOPTS,
     deps = [
+        # Order matters, this needs to come before anything that imports swsscommon transitively
+        # TODO: Move back to `swsscommon` when we have made a `cc_shared_library` version of libswsscommon.
+        "//bazel/swsscommon:swsscommon_shared",
         "//cfgmgr:cfgmgr_base_lib",
         "//cfgmgr:shellcmd",
         "//lib:lib_utils",
@@ -56,7 +59,6 @@ cc_library(
         "//bazel/libnl3:libnl-route-3",
         "//bazel/libnl3:libnl3",
         "//bazel/saivs:saivs",
-        "//bazel/swsscommon:swsscommon",
         "//bazel/zmq:zmq",
     ],
 )
@@ -127,19 +129,13 @@ cc_test(
         "test_failure_handling.cpp",
     ] + ALL_TEST_HDRS,
     copts = COMMON_COPTS,
-    linkopts = COMMON_LINKOPTS + [
-      "-Wl,--exclude-libs,libcommon.a",
-    ],
+    linkopts = COMMON_LINKOPTS,
     dynamic_deps = [
-      # "//bazel/swsscommon:swsscommon_shared",
-      # "//bazel/swsscommon:swsscommon_shared_prebuilt",
-      # ":libcommon_shared",
+      # TODO Move swsscommon here once we have made cc_shared_library work with rules_distroless.
     ],
     deps = [
-       # "//bazel/swsscommon:swsscommon_prebuilt",
-       # "//bazel/swsscommon:swsscommon_shared",
-       "//bazel/swsscommon:swsscommon_prebuilt",
-       # "tests_deps_wrapper",
+        # Order matters, this needs to come before anything that imports swsscommon transitively
+       "//bazel/swsscommon:swsscommon_shared",
        ":fake_response_publisher_lib",
        "//cfgmgr:cfgmgr_base_lib",
        "//lib:lib_utils",
@@ -159,11 +155,6 @@ cc_test(
 
        "@bookworm//libyang2-dev:libyang2",
     ],
-    # TODO BL: figure out what to do with these.
-    # additional_linker_inputs = [
-    #   "@@rules_distroless++apt+bookworm_libboost-serialization1.74-dev-amd64_1.74.0-ds1-21//:usr/lib/x86_64-linux-gnu/libboost_serialization.so",
-    #   "@@rules_distroless++apt+bookworm_libboost-serialization1.74-dev-amd64_1.74.0-ds1-21//:usr/lib/x86_64-linux-gnu/libboost_wserialization.so",
-    # ]
 )
 
 # only works with --config=portsyncd_tests_opts

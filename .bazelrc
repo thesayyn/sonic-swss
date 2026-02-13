@@ -1,6 +1,13 @@
 common --registry=https://raw.githubusercontent.com/aspect-build/bazel-central-registry/aspect_rules_py-v1.7.1
 common --registry=https://bcr.bazel.build
 
+# Temporary flag to unblock transitioning to bzlmod.
+# We should remove this when we have a `cc_shared_library` version of `swss_common`.
+#
+# Note that this will not propagate to other builds, such as `sonic-buildimage`.
+# This is fine, because this flag is exclusively for tests.
+common --@sonic_swss_common//:alwayslink=False
+
 # New versions of protobuf and googletest depend on new versions of abseil which need C++17
 # TODO BL: There are some warnings from the libc from bookworm, it seems that some symbols are deprecated in C++17
 build --cxxopt='-std=c++17' --host_cxxopt='-std=c++17'
