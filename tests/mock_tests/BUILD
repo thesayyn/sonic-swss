@@ -86,7 +86,6 @@ cc_library(
 )
 
 
-# TODO BL: This target is known to be broken, we're working on a fix
 cc_test(
     name = "tests",
     srcs = [

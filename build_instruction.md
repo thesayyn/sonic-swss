@@ -33,7 +33,7 @@ Targets can be easily extended. If adding a new binary, use a `cc_binary` target
 binary in the swss debian package, add it as a dependency to the `all_binaries` target in the BUILD file at
 the root of the workspace.
 
-To add additional system dependencies, please add the dependency to the WORKSPACE file. As much as possible,
+To add additional system dependencies, please add the dependency to the MODULE.bazel file. As much as possible,
 Bazel dependencies are preferred for increased hermeticity.
 
 You can also build a debian package using: `bazel build :swss_deb_pkg`.
