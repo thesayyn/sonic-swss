@@ -5,9 +5,6 @@ package(default_visibility = ["//visibility:public"])
 cc_test(
     name = "tests",
     srcs = [
-        # TODO BL: Files don't exist anymore
-        # "blackhole_counters_ut.cpp",
-        # "congestion_counters_ut.cpp",
         "quoted_ut.cpp",
         "request_parser_ut.cpp",
         "swssnet_ut.cpp",

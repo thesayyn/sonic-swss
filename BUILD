@@ -3,6 +3,8 @@ load("@rules_pkg//pkg:mappings.bzl", "pkg_attributes", "pkg_filegroup", "pkg_fil
 load("@rules_pkg//pkg:tar.bzl", "pkg_tar")
 load("//:swss_helpers.bzl", "create_pkg_files_of_stripped_binaries")
 
+exports_files(["libswsscommon_consolidated.so"])
+
 config_setting(
     name = "debug_mode",
     values = {"compilation_mode": "dbg"},

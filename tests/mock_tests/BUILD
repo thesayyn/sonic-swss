@@ -43,6 +43,10 @@ cc_library(
     ],
     linkopts = COMMON_LINKOPTS,
     deps = [
+        # do not sort
+        # Order matters, this needs to come before anything that imports swsscommon transitively
+        # TODO: Move back to `swsscommon` when we have made a `cc_shared_library` version of libswsscommon.
+        "//bazel/swsscommon:swsscommon_shared",
         "//cfgmgr:cfgmgr_base_lib",
         "//cfgmgr:shellcmd",
         "//lib:lib_utils",
@@ -56,7 +60,6 @@ cc_library(
         "//bazel/libnl3:libnl-route-3",
         "//bazel/libnl3:libnl3",
         "//bazel/saivs:saivs",
-        "//bazel/swsscommon:swsscommon",
         "//bazel/zmq:zmq",
     ],
 )
@@ -83,7 +86,7 @@ cc_library(
     linkopts = COMMON_LINKOPTS,
 )
 
-# TODO BL: This target is known to be broken, we're working on a fix
+
 cc_test(
     name = "tests",
     srcs = [
@@ -126,36 +129,14 @@ cc_test(
         "test_failure_handling.cpp",
     ] + ALL_TEST_HDRS,
     copts = COMMON_COPTS,
-    linkopts = COMMON_LINKOPTS + [
-      # Ref: https://linux.die.net/man/1/ld
-      # "-Wl,--exclude-libs=libcommon.a",
-      # TODO BL: Let's pray that this works
-      "-Wl,--remap-inputs=/usr/lib/x86_64-linux-gnu/libbsd.so.*=/dev/null",
-      # "-Wl,--remap-inputs=/usr/lib/x86_64-linux-gnu/libbsd.so.0.11.7=/dev/null",
-      # "-Wl,--remap-inputs=/usr/lib/x86_64-linux-gnu/libbsd.so.0.11.7=/usr/lib/x86_64-linux-gnu/libbsd.so.0.12.1",
-      # "-Wl,--remap-inputs=/usr/lib/x86_64-linux-gnu/libbsd.so.0.11.7=/home/blorente/code/github.com/sonic-net/sonic-swss/libbsd.so.0.11.7",
-      "-lboost_serialization",
-      # TODO BL: obviously absolute paths are bad.
-      # TODO BL: These are also bad, and they may even work
-      "-Lbazel-out/k8-fastbuild/bin/external/rules_distroless++apt+bookworm_libboost-serialization1.74-dev-amd64_1.74.0-ds1-21/usr/lib/x86_64-linux-gnu/",
-      "-Wl,-rpath-link=bazel-out/k8-fastbuild/bin/external/rules_distroless++apt+bookworm_libboost-serialization1.74-dev-amd64_1.74.0-ds1-21/usr/lib/x86_64-linux-gnu",
-
-      # TODO BL: This can't be the right way to do this,
-      # but it's picking up libnl-nf-3 from the import which is just `.so`, and not the 
-      # actual _so_libs, which is .so.200
-      "-Wl,-rpath=$ORIGIN/../../_solib_k8/_U_A_Arules_Udistroless++apt+bookworm_Ulibnl-nf-3-200-amd64_U3.7.0-0.2-b1_S_S_C_Uso_Ulibs___Uexternal_Srules_Udistroless++apt+bookworm_Ulibnl-nf-3-200-amd64_U3.7.0-0.2-b1_Susr_Slib_Sx86_U64-linux-gnu/",
-      # "-Wl,-rpath=$ORIGIN/../../_solib_k8/_U_A_Arules_Udistroless++apt+bookworm_Ulibhiredis0.14-amd64_U0.14.1-3_S_S_C_Uso_Ulibs___Uexternal_Srules_Udistroless++apt+bookworm_Ulibhiredis0.14-amd64_U0.14.1-3_Susr_Slib_Sx86_U64-linux-gnu",
-      # "-Wl,-rpath=$ORIGIN/../../_solib_k8/_U_A_Arules_Udistroless++apt+bookworm_Ulibyang2-amd64_U2.1.30-2_S_S_C_Uso_Ulibs___Uexternal_Srules_Udistroless++apt+bookworm_Ulibyang2-amd64_U2.1.30-2_Susr_Slib_Sx86_U64-linux-gnu",
-      # "-Wl,-rpath=$ORIGIN/../../_solib_k8/_U_A_Arules_Udistroless++apt+bookworm_Ulibzmq5-amd64_U4.3.4-6_S_S_C_Uso_Ulibs___Uexternal_Srules_Udistroless++apt+bookworm_Ulibzmq5-amd64_U4.3.4-6_Susr_Slib_Sx86_U64-linux-gnu",    
-      # "-Wl,-rpath=$ORIGIN/../../_solib_k8/_U_A_Arules_Udistroless++apt+bookworm_Ulibzmq5-amd64_U4.3.4-6_S_S_C_Uso_Ulibs___Uexternal_Srules_Udistroless++apt+bookworm_Ulibzmq5-amd64_U4.3.4-6_Susr_Slib_Sx86_U64-linux-gnu",    
-      # "-Wl,-rpath=$ORIGIN/../../_solib_k8/_U_A_Arules_Udistroless++apt+bookworm_Ulibnorm1-amd64_U1.5.9-dfsg-2_S_S_C_Uso_Ulibs___Uexternal_Srules_Udistroless++apt+bookworm_Ulibnorm1-amd64_U1.5.9-dfsg-2_Susr_Slib_Sx86_U64-linux-gnu",
-    ],
+    linkopts = COMMON_LINKOPTS,
     dynamic_deps = [
-      # "//bazel/swsscommon:swsscommon_shared",
-      "@sonic_swss_common//:libswsscommon_archive",
+      # TODO Move swsscommon here once we have made cc_shared_library work with rules_distroless.
     ],
     deps = [
-      # "tests_deps_wrapper",
+       # do not sort
+       # Order matters, this needs to come before anything that imports swsscommon transitively
+       "//bazel/swsscommon:swsscommon_shared",
        ":fake_response_publisher_lib",
        "//cfgmgr:cfgmgr_base_lib",
        "//lib:lib_utils",
@@ -173,29 +154,8 @@ cc_test(
        "//bazel/saivs:saivs",
        "//bazel/zmq:zmq",
 
-       # TODO BL: Figure out why we must depend on these wodeps directly and the -rpaths are not baked into the binary
-       "@@rules_distroless++apt+bookworm_libnl-3-200-amd64_3.7.0-0.2-b1//:libnl-3-200_wodeps",
-       "@@rules_distroless++apt+bookworm_libnl-nf-3-200-amd64_3.7.0-0.2-b1//:libnl-nf-3-200_wodeps",
-       "@@rules_distroless++apt+bookworm_libnl-3-dev-amd64_3.7.0-0.2-b1//:libnl-3_wodeps",
-       "@@rules_distroless++apt+bookworm_libnl-genl-3-dev-amd64_3.7.0-0.2-b1//:libnl-genl-3_wodeps",
-       "@@rules_distroless++apt+bookworm_libnl-nf-3-dev-amd64_3.7.0-0.2-b1//:libnl-nf-3_wodeps",
-       "@@rules_distroless++apt+bookworm_libnl-route-3-dev-amd64_3.7.0-0.2-b1//:libnl-route-3_wodeps",
-       "@@rules_distroless++apt+bookworm_libhiredis-dev-amd64_0.14.1-3//:libhiredis_wodeps",
-       "@@rules_distroless++apt+bookworm_libhiredis0.14-amd64_0.14.1-3//:libhiredis0.14_wodeps",
-
-       # TODO BL: new deps
        "@bookworm//libyang2-dev:libyang2",
-
-       # "@sonic_swss_common//:boost",
-       # "@bookworm//libboost-serialization-dev:libboost-serialization",
-       # "@bookworm//libboost-serialization1.74-dev:libboost-serialization1.74",
-       "@@rules_distroless++apt+bookworm_libboost-serialization1.74-dev-amd64_1.74.0-ds1-21//:libboost-serialization1.74_wodeps",
     ],
-    # TODO BL: figure out what to do with these.
-    additional_linker_inputs = [
-      "@@rules_distroless++apt+bookworm_libboost-serialization1.74-dev-amd64_1.74.0-ds1-21//:usr/lib/x86_64-linux-gnu/libboost_serialization.so",
-      "@@rules_distroless++apt+bookworm_libboost-serialization1.74-dev-amd64_1.74.0-ds1-21//:usr/lib/x86_64-linux-gnu/libboost_wserialization.so",
-    ]
 )
 
 # only works with --config=portsyncd_tests_opts

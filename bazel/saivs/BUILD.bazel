@@ -2,6 +2,6 @@ package(default_visibility = ["//visibility:public"])
 
 alias(
   name = "saivs",
-  actual = "@sonic_sairedis//vslib:saivs",
+  actual = "@sonic_sairedis//vslib:libsaivs",
 )
 

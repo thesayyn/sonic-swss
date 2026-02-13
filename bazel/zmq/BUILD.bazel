@@ -2,10 +2,10 @@ package(default_visibility = ["//visibility:public"])
 
 alias(
     name = "zmq_headers",
-    actual = "@bookworm//libzmq3-dev:libzmq3", # TODO BL: it's possible that it's zmq5
+    actual = "@bookworm//libzmq3-dev:libzmq3",
 )
 
 alias(
     name = "zmq",
-    actual = "@bookworm//libzmq3-dev:libzmq3", # TODO BL: it's possible that it's zmq5
+    actual = "@bookworm//libzmq3-dev:libzmq3",
 )

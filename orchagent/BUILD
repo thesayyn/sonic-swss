@@ -378,7 +378,13 @@ cc_test(
         "//conditions:default": [],
     }),
     local_defines = DEFAULT_DEFINES,
+    dynamic_deps = [
+      # TODO Move swsscommon here once we have made cc_shared_library work with rules_distroless.
+    ],
     deps = [
+        # do not sort
+        # Order matters, this needs to come before anything that imports swsscommon transitively
+        "//bazel/swsscommon:swsscommon_shared",
         ":orchagent_lib",
         "//tests/mock_tests:fake_response_publisher_lib",
         "@com_google_googletest//:gtest",
@@ -387,7 +393,6 @@ cc_test(
         "//bazel/saimetadata:saimeta",
         "//bazel/saimetadata:saimetadata",
         "//bazel/sairedis:sairedis",
-        "//bazel/swsscommon:swsscommon",
         "//bazel/zmq:zmq",
         "//bazel/dashapi:dashapi",
     ] + select({
