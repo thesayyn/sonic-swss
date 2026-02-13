@@ -382,6 +382,7 @@ cc_test(
       # TODO Move swsscommon here once we have made cc_shared_library work with rules_distroless.
     ],
     deps = [
+        # do not sort
         # Order matters, this needs to come before anything that imports swsscommon transitively
         "//bazel/swsscommon:swsscommon_shared",
         ":orchagent_lib",

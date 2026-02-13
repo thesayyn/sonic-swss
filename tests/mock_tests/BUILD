@@ -43,6 +43,7 @@ cc_library(
     ],
     linkopts = COMMON_LINKOPTS,
     deps = [
+        # do not sort
         # Order matters, this needs to come before anything that imports swsscommon transitively
         # TODO: Move back to `swsscommon` when we have made a `cc_shared_library` version of libswsscommon.
         "//bazel/swsscommon:swsscommon_shared",
@@ -133,7 +134,8 @@ cc_test(
       # TODO Move swsscommon here once we have made cc_shared_library work with rules_distroless.
     ],
     deps = [
-        # Order matters, this needs to come before anything that imports swsscommon transitively
+       # do not sort
+       # Order matters, this needs to come before anything that imports swsscommon transitively
        "//bazel/swsscommon:swsscommon_shared",
        ":fake_response_publisher_lib",
        "//cfgmgr:cfgmgr_base_lib",
