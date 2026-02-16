@@ -1,13 +1,19 @@
-# TODO BL: New versions of protobuf and googletest depend on new versions of abseil which need C++17
-# build --cxxopt='-std=c++14' --host_cxxopt='-std=c++14'
-# build --cxxopt='-std=c++17' --host_cxxopt='-std=c++17'
+common --registry=https://raw.githubusercontent.com/aspect-build/bazel-central-registry/aspect_rules_py-v1.7.1
+common --registry=https://bcr.bazel.build
+
+# Temporary flag to unblock transitioning to bzlmod.
+# We should remove this when we have a `cc_shared_library` version of `swss_common`.
+#
+# Note that this will not propagate to other builds, such as `sonic-buildimage`.
+# This is fine, because this flag is exclusively for tests.
+common --@sonic_swss_common//:alwayslink=False
+
+# New versions of protobuf and googletest depend on new versions of abseil which need C++17
+build --cxxopt='-std=c++17' --host_cxxopt='-std=c++17'
 build --cxxopt='-Wall'
 build --cxxopt='-fPIC'
 build --cxxopt='-Wno-write-strings'
-
-# TODO BL: Turning off -Werror until we get to a stable point
 # build --cxxopt='-Werror'
-
 build --cxxopt='-Wno-reorder'
 build --cxxopt='-Wcast-align'
 build --cxxopt='-Wcast-qual'
@@ -17,6 +23,13 @@ build --cxxopt='-Wdisabled-optimization'
 build --cxxopt='-Wextra'
 # issues with protobuf
 # build --cxxopt='-Wfloat-equal'
+# build --cxxopt='-Wmissing-field-initializers'
+build --cxxopt='-Wno-missing-field-initializers'
+build --cxxopt='-Wno-deprecated-declarations'
+# issues with absl
+build --cxxopt='-Wno-error=format-nonliteral'
+build --cxxopt='-Wno-format-nonliteral'
+
 build --cxxopt='-Wno-stringop-overflow'
 build --cxxopt='-Wno-error=suggest-attribute=format'
 build --cxxopt='-Wformat=2'
@@ -27,7 +40,6 @@ build --cxxopt='-Wimport'
 build --cxxopt='-Winit-self'
 build --cxxopt='-Winvalid-pch'
 build --cxxopt='-Wlong-long'
-build --cxxopt='-Wmissing-field-initializers'
 build --cxxopt='-Wmissing-format-attribute'
 build --cxxopt='-Wno-aggregate-return'
 build --cxxopt='-Wno-padded'
@@ -37,6 +49,7 @@ build --cxxopt='-Wpacked'
 build --cxxopt='-Wpointer-arith'
 # issues with googletest and stack-protector
 # build --cxxopt='-Wstack-protector'
+
 build --cxxopt='-Wstrict-aliasing=3'
 build --cxxopt='-Wswitch'
 build --cxxopt='-Wswitch-default'
@@ -72,9 +85,3 @@ build:portsyncd_tests_opts --define=portsyncd_tests_opts=true
 build:portsyncd_tests_opts --linkopt='-Wl,-wrap,if_nameindex'
 build:portsyncd_tests_opts --linkopt='-Wl,-wrap,if_freenameindex'
 build --experimental_cc_shared_library
-
-common:blmigration --registry=https://raw.githubusercontent.com/aspect-build/bazel-central-registry/aspect_rules_py-v1.7.1
-common:blmigration --registry=https://bcr.bazel.build
-# common:blmigration --incompatible_enable_proto_toolchain_resolution
-# common:blmigration --@protobuf//bazel/toolchains:prefer_prebuilt_protoc=True
-common --config=blmigration
