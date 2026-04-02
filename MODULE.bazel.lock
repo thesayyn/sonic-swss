@@ -628,7 +628,7 @@
     "@@rules_bison+//bison/extensions:bison_repository_ext.bzl%bison_repository_ext": {
       "general": {
         "bzlTransitiveDigest": "H7cNTZtS4EFXjcqY4Cq8gd7Ju70HtvajyY6Azu4AvBM=",
-        "usagesDigest": "hjL7R4HLlv9NNAci0JwB2lA/nJtzon/upTu0v9kiyQ4=",
+        "usagesDigest": "uu50KG+6hRFsdiOql9wuaX2G68vuLFTPANEmztJEsSE=",
         "recordedFileInputs": {},
         "recordedDirentsInputs": {},
         "envVariables": {},
@@ -696,7 +696,7 @@
     "@@rules_distroless+//apt:extensions.bzl%apt": {
       "general": {
         "bzlTransitiveDigest": "c9bF647fGaf7+f77BtPvM3sRD9KziirQKgYXFZx2NPI=",
-        "usagesDigest": "VWIYTo+Gt29UKL8T5qK+aiB+uClcyH3jmrEAKKkSozo=",
+        "usagesDigest": "3+1Amx9PqXvg6PKU1y/2Lg+VnpCqLkz+FSHOHJeEkfw=",
         "recordedFileInputs": {},
         "recordedDirentsInputs": {},
         "envVariables": {},
@@ -6960,7 +6960,7 @@
     "@@rules_doxygen+//:extensions.bzl%doxygen_extension": {
       "general": {
         "bzlTransitiveDigest": "GcidKU62P7KaEpix4zkeuuIKYPyTmqeHpY/or3GXXz0=",
-        "usagesDigest": "KTtRG7Fn6yunPqSnPKaEcRSISJTHJP/BNlnjehM5CVs=",
+        "usagesDigest": "hF0bnAN6Brr/nrTT0PYEI6SR2y1n5fiUUfVce53JTPk=",
         "recordedFileInputs": {},
         "recordedDirentsInputs": {},
         "envVariables": {},
@@ -7016,7 +7016,7 @@
     "@@rules_flex+//flex/extensions:flex_repository_ext.bzl%flex_repository_ext": {
       "general": {
         "bzlTransitiveDigest": "uJATbmGYgiDt6cyvHYACOAK2osIuPjiiNPX/GcVo9io=",
-        "usagesDigest": "sfq57KyogJQJSaQ3wzxn4LumNKB4XOFtsD08pVy3io8=",
+        "usagesDigest": "SNAjp6/IAZLhUclr+Jz0CenN4HV7QoPoPeE21QUsPIY=",
         "recordedFileInputs": {},
         "recordedDirentsInputs": {},
         "envVariables": {},
@@ -7510,7 +7510,7 @@
     "@@rules_m4+//m4/extensions:m4_repository_ext.bzl%m4_repository_ext": {
       "general": {
         "bzlTransitiveDigest": "n7CQNX0TDIMZ3CqLQXczwc2JogUG305Q4qoqF/xN10A=",
-        "usagesDigest": "A1vm590qtvsFBLy3UHxnD0CfqpjohmQ7mNMIg9VVNeA=",
+        "usagesDigest": "Q4tAZ76GsWsDH2jLSMJuPN8USfRn04qLDlO7jAqahC0=",
         "recordedFileInputs": {},
         "recordedDirentsInputs": {},
         "envVariables": {},

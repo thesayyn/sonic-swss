@@ -1,11 +1,11 @@
 # Keep bazel_compatibility in sync with sonic-buildimage's .bazelversion.
 module(
     name = "sonic-swss",
+    version = "0.0.0",
     bazel_compatibility = [">=8.5.1", "<=8.5.1"],
 )
 
 http_archive = use_repo_rule("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
-
 
 """Third party dependencies.
 
@@ -39,7 +39,6 @@ git_override(
     commit = "ebfd74a2e07b83235e064bb63ace98a1a5223e02",
     remote = "https://github.com/bazel-contrib/rules_distroless",
 )
-
 
 apt = use_extension("@rules_deb//apt:extensions.bzl", "apt")
 
@@ -84,42 +83,18 @@ apt.install(
 use_repo(apt, "bookworm")
 
 bazel_dep(name = "sonic-swss-common", version = "0.0.0", repo_name = "sonic_swss_common")
-local_path_override(
-    module_name = "sonic-swss-common",
-    path = "../sonic-swss-common",
-)
 
 bazel_dep(name = "sonic-build-infra", version = "0.0.0")
-local_path_override(
-    module_name = "sonic-build-infra",
-    path = "../sonic-build-infra",
-)
 
 register_toolchains("@sonic-build-infra//toolchains/gcc:host_gcc_toolchain")
 
 bazel_dep(name = "sonic-sairedis", version = "0.0.0", repo_name = "sonic_sairedis")
-local_path_override(
-    module_name = "sonic-sairedis",
-    path = "../sonic-sairedis",
-)
 
 bazel_dep(name = "sai", version = "0.0.0")
-local_path_override(
-    module_name = "sai",
-    path = "../sonic-sairedis/SAI",
-)
 
 bazel_dep(name = "sonic-dash-api", version = "0.0.0", repo_name = "sonic_dash_api")
-local_path_override(
-    module_name = "sonic-dash-api",
-    path = "../sonic-dash-api",
-)
 
 bazel_dep(name = "libnl3", version = "3.7.0")
-local_path_override(
-    module_name = "libnl3",
-    path = "../libnl3",
-)
 
 # TODO(bazel-ready): replace with new version of rules_m4 when this merges:
 #  https://github.com/jmillikin/rules_m4/pull/23
@@ -129,9 +104,5 @@ git_override(
     remote = "https://github.com/blorente/rules_m4",
 )
 
-bazel_dep(name = "libteam", version = "0.0.0", repo_name = "libteam")
-local_path_override(
-    module_name = "libteam",
-    path = "../libteam",
-)
+bazel_dep(name = "libteam", version = "1.31", repo_name = "libteam")
 
