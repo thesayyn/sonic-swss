@@ -34,9 +34,10 @@ bazel_dep(name = "bazel_lib", version = "3.1.1")
 # Deps we need for starlarkified rulesets
 bazel_dep(name = "platforms", version = "1.0.0")
 bazel_dep(name = "rules_distroless", version = "0.6.1", repo_name = "rules_deb")
-local_path_override(
-  module_name = "rules_distroless",
-  path = "../rules_distroless",
+git_override(
+    module_name = "rules_distroless",
+    commit = "ebfd74a2e07b83235e064bb63ace98a1a5223e02",
+    remote = "https://github.com/bazel-contrib/rules_distroless",
 )
 
 apt = use_extension("@rules_deb//apt:extensions.bzl", "apt")
