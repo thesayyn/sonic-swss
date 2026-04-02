@@ -40,6 +40,7 @@ git_override(
     remote = "https://github.com/bazel-contrib/rules_distroless",
 )
 
+
 apt = use_extension("@rules_deb//apt:extensions.bzl", "apt")
 
 apt.sources_list(
@@ -117,7 +118,7 @@ local_path_override(
 bazel_dep(name = "libnl3", version = "3.7.0")
 local_path_override(
     module_name = "libnl3",
-    path = "../sonic-buildimage/src/libnl3",
+    path = "../libnl3",
 )
 
 # TODO(bazel-ready): replace with new version of rules_m4 when this merges:
@@ -131,6 +132,6 @@ git_override(
 bazel_dep(name = "libteam", version = "0.0.0", repo_name = "libteam")
 local_path_override(
     module_name = "libteam",
-    path = "../sonic-buildimage/src/libteam",
+    path = "../libteam",
 )
 
